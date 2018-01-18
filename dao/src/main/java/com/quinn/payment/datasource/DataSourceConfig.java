@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 /**
  * @author Quinn
  * @date 2018/1/18
- * @EnableTransactionManagement 支持事物
+ * @EnableTransactionManagement 支持开启事物
  * @package com.quinn.payment.datasource
  */
 @Configuration
