@@ -24,16 +24,59 @@
     </parent>
 
     <properties>
+        <model.version>1.0-SNAPSHOT</model.version>
+        <common.version>1.0-SNAPSHOT</common.version>
+        <dao.version>1.0-SNAPSHOT</dao.version>
+        <service.version>1.0-SNAPSHOT</service.version>
+        <web.version>1.0-SNAPSHOT</web.version>
         <fastjson.version>1.2.17</fastjson.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.quinn.app</groupId>
+                <artifactId>common</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.quinn.app</groupId>
+                <artifactId>model</artifactId>
+                <version>${model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.quinn.app</groupId>
+                <artifactId>dao</artifactId>
+                <version>${dao.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.quinn.app</groupId>
+                <artifactId>service</artifactId>
+                <version>${service.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>3.0.4.RELEASE</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

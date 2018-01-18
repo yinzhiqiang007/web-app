@@ -9,8 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>com.quinn.app</groupId>
     <artifactId>common</artifactId>
+    <version>${common.version}</version>
 
     <dependencies>
         <dependency>

@@ -11,6 +11,14 @@
 
     <groupId>com.quinn.app</groupId>
     <artifactId>service</artifactId>
+    <version>${service.version}</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.quinn.app</groupId>
+            <artifactId>dao</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>
