@@ -28,7 +28,7 @@ public class DataSourceConfig {
 
     // 精确到 master 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.quinn.payment.dao";
-    static final String MAPPER_LOCATION = "classpath::mapper/app/";
+    static final String MAPPER_LOCATION = "classpath*:mapper/entity/*.xml";
 
 
     @Value("${payment.datasource.url}")
@@ -40,7 +40,7 @@ public class DataSourceConfig {
     @Value("${payment.datasource.password}")
     private String password;
 
-    @Value("${payment.datasource.driverClassName}")
+    @Value("${payment.datasource.driver}")
     private String driverClass;
 
     @Bean(name = "paymentDataSource")
@@ -69,6 +69,7 @@ public class DataSourceConfig {
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(DataSourceConfig.MAPPER_LOCATION));
         return sessionFactory.getObject();
     }
+
 
     /**
      * 有多少个从库就要配置多少个 paymentlication.properties 方式

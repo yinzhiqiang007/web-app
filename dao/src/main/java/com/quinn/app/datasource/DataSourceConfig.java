@@ -28,7 +28,7 @@ public class DataSourceConfig {
 
     // 精确到 master 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.quinn.app.dao";
-    static final String MAPPER_LOCATION = "classpath:mapper/app/";
+    static final String MAPPER_LOCATION = "classpath*:mapper/app/*.xml";
 
 
     @Value("${app.datasource.url}")
@@ -40,7 +40,7 @@ public class DataSourceConfig {
     @Value("${app.datasource.password}")
     private String password;
 
-    @Value("${app.datasource.driverClassName}")
+    @Value("${app.datasource.driver}")
     private String driverClass;
 
     @Bean(name = "appDataSource")
