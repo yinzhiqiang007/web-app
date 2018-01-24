@@ -1,6 +1,10 @@
 package com.quinn.app.controller;
 
 import com.quinn.app.common.util.CommonUtil;
+import com.quinn.app.model.Base;
+import com.quinn.app.model.entity.Bank;
+import com.quinn.app.service.BankService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,10 +22,14 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user/")
 public class UserController {
 
+    @Autowired
+    private BankService bankService;
+
     @RequestMapping("/test")
     @ResponseBody
-    public String test(){
-        return "sss";
+    public Base test(String id){
+        Bank b = bankService.getById(id);
+        return b;
     }
 
     @RequestMapping("/user")

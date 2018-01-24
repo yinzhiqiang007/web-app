@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quinn.app.dao.PaymentDao">
+
+
+    <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.Payment" >
+        <result column="id" property="id" jdbcType="bigint" />
+        <result column="payDate" property="payDate" jdbcType="varchar" />
+        <result column="seq" property="seq" jdbcType="int" />
+        <result column="patientName" property="patientName" jdbcType="varchar" />
+        <result column="money" property="money" jdbcType="decimal" />
+        <result column="hospitalName" property="hospitalName" jdbcType="varchar" />
+        <result column="bankCode" property="bankCode" jdbcType="varchar" />
+        <result column="bankCard" property="bankCard" jdbcType="varchar" />
+        <result column="bankName" property="bankName" jdbcType="varchar" />
+        <result column="bankFullName" property="bankFullName" jdbcType="varchar" />
+        <result column="currency" property="currency" jdbcType="varchar" />
+        <result column="acctName" property="acctName" jdbcType="varchar" />
+        <result column="cardFlag" property="cardFlag" jdbcType="int" />
+        <result column="desc" property="desc" jdbcType="varchar" />
+        <result column="status" property="status" jdbcType="int" />
+        <result column="resultCode" property="resultCode" jdbcType="varchar" />
+        <result column="resultMsg" property="resultMsg" jdbcType="varchar" />
+        <result column="payBillId" property="payBillId" jdbcType="varchar" />
+        <result column="createTime" property="createTime" jdbcType="datetime" />
+        <result column="updateTime" property="updateTime" jdbcType="datetime" />
+        <result column="lock" property="lock" jdbcType="varchar" />
+        <result column="confirmCode" property="confirmCode" jdbcType="varchar" />
+        <result column="mail" property="mail" jdbcType="varchar" />
+        <result column="contractNumber" property="contractNumber" jdbcType="varchar" />
+        <result column="patientIdcard" property="patientIdcard" jdbcType="varchar" />
+        <result column="deleteFlag" property="deleteFlag" jdbcType="int" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id,payDate,seq,patientName,money,hospitalName,bankCode,bankCard,bankName,bankFullName,currency,acctName,cardFlag,desc,status,resultCode,resultMsg,payBillId,createTime,updateTime,lock,confirmCode,mail,contractNumber,patientIdcard,deleteFlag
+    </sql>
+
+
+    <select id="getById" resultType="com.quinn.app.model.entity.Payment">
+        select * from tb_payment where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.quinn.app.model.entity.Payment" >
+        insert into tb_payment (
+          <include refid="Base_Column_List" />
+        )
+        values (
+        #{id},#{payDate},#{seq},#{patientName},#{money},#{hospitalName},#{bankCode},#{bankCard},#{bankName},#{bankFullName},#{currency},#{acctName},#{cardFlag},#{desc},#{status},#{resultCode},#{resultMsg},#{payBillId},#{createTime},#{updateTime},#{lock},#{confirmCode},#{mail},#{contractNumber},#{patientIdcard},#{deleteFlag}
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.quinn.app.model.entity.Payment" >
+      update tb_payment
+      <set>
+        id = #{id}
+        payDate = #{payDate}
+        seq = #{seq}
+        patientName = #{patientName}
+        money = #{money}
+        hospitalName = #{hospitalName}
+        bankCode = #{bankCode}
+        bankCard = #{bankCard}
+        bankName = #{bankName}
+        bankFullName = #{bankFullName}
+        currency = #{currency}
+        acctName = #{acctName}
+        cardFlag = #{cardFlag}
+        desc = #{desc}
+        status = #{status}
+        resultCode = #{resultCode}
+        resultMsg = #{resultMsg}
+        payBillId = #{payBillId}
+        createTime = #{createTime}
+        updateTime = #{updateTime}
+        lock = #{lock}
+        confirmCode = #{confirmCode}
+        mail = #{mail}
+        contractNumber = #{contractNumber}
+        patientIdcard = #{patientIdcard}
+        deleteFlag = #{deleteFlag}
+      </set>
+      where id = #{id}
+    </update>
+
+    <update id="updateByIdSelective" parameterType="com.quinn.app.model.entity.Payment" >
+    update tb_payment
+    <set>
+        <if test="id != null" >
+        id = #{id}
+        </if>
+        <if test="payDate != null" >
+        payDate = #{payDate}
+        </if>
+        <if test="seq != null" >
+        seq = #{seq}
+        </if>
+        <if test="patientName != null" >
+        patientName = #{patientName}
+        </if>
+        <if test="money != null" >
+        money = #{money}
+        </if>
+        <if test="hospitalName != null" >
+        hospitalName = #{hospitalName}
+        </if>
+        <if test="bankCode != null" >
+        bankCode = #{bankCode}
+        </if>
+        <if test="bankCard != null" >
+        bankCard = #{bankCard}
+        </if>
+        <if test="bankName != null" >
+        bankName = #{bankName}
+        </if>
+        <if test="bankFullName != null" >
+        bankFullName = #{bankFullName}
+        </if>
+        <if test="currency != null" >
+        currency = #{currency}
+        </if>
+        <if test="acctName != null" >
+        acctName = #{acctName}
+        </if>
+        <if test="cardFlag != null" >
+        cardFlag = #{cardFlag}
+        </if>
+        <if test="desc != null" >
+        desc = #{desc}
+        </if>
+        <if test="status != null" >
+        status = #{status}
+        </if>
+        <if test="resultCode != null" >
+        resultCode = #{resultCode}
+        </if>
+        <if test="resultMsg != null" >
+        resultMsg = #{resultMsg}
+        </if>
+        <if test="payBillId != null" >
+        payBillId = #{payBillId}
+        </if>
+        <if test="createTime != null" >
+        createTime = #{createTime}
+        </if>
+        <if test="updateTime != null" >
+        updateTime = #{updateTime}
+        </if>
+        <if test="lock != null" >
+        lock = #{lock}
+        </if>
+        <if test="confirmCode != null" >
+        confirmCode = #{confirmCode}
+        </if>
+        <if test="mail != null" >
+        mail = #{mail}
+        </if>
+        <if test="contractNumber != null" >
+        contractNumber = #{contractNumber}
+        </if>
+        <if test="patientIdcard != null" >
+        patientIdcard = #{patientIdcard}
+        </if>
+        <if test="deleteFlag != null" >
+        deleteFlag = #{deleteFlag}
+        </if>
+    </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>

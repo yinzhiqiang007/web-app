@@ -29,7 +29,7 @@ public class DataSourceConfig {
 
     // 精确到 master 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.quinn.payment.dao";
-    static final String MAPPER_LOCATION = "classpath*:mapper/entity/*.xml";
+    static final String MAPPER_LOCATION = "classpath*:mapper/payment/*.xml";
 
 
     @Value("${payment.datasource.url}")

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quinn.app.dao.CallbackLogDao">
+
+
+    <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.CallbackLog" >
+        <result column="id" property="id" jdbcType="bigint" />
+        <result column="orderId" property="orderId" jdbcType="varchar" />
+        <result column="content" property="content" jdbcType="text" />
+        <result column="status" property="status" jdbcType="varchar" />
+        <result column="createTime" property="createTime" jdbcType="datetime" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id,orderId,content,status,createTime
+    </sql>
+
+
+    <select id="getById" resultType="com.quinn.app.model.entity.CallbackLog">
+        select * from tb_callback_log where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.quinn.app.model.entity.CallbackLog" >
+        insert into tb_callback_log (
+          <include refid="Base_Column_List" />
+        )
+        values (
+        #{id},#{orderId},#{content},#{status},#{createTime}
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.quinn.app.model.entity.CallbackLog" >
+      update tb_callback_log
+      <set>
+        id = #{id}
+        orderId = #{orderId}
+        content = #{content}
+        status = #{status}
+        createTime = #{createTime}
+      </set>
+      where id = #{id}
+    </update>
+
+    <update id="updateByIdSelective" parameterType="com.quinn.app.model.entity.CallbackLog" >
+    update tb_callback_log
+    <set>
+        <if test="id != null" >
+        id = #{id}
+        </if>
+        <if test="orderId != null" >
+        orderId = #{orderId}
+        </if>
+        <if test="content != null" >
+        content = #{content}
+        </if>
+        <if test="status != null" >
+        status = #{status}
+        </if>
+        <if test="createTime != null" >
+        createTime = #{createTime}
+        </if>
+    </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>

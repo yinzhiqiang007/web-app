@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quinn.app.dao.BorrowOrderDao">
+
+
+    <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.BorrowOrder" >
+        <result column="id" property="id" jdbcType="bigint" />
+        <result column="title" property="title" jdbcType="varchar" />
+        <result column="borrow_orderid" property="borrowOrderid" jdbcType="varchar" />
+        <result column="mobile" property="mobile" jdbcType="varchar" />
+        <result column="hos_id" property="hosId" jdbcType="bigint" />
+        <result column="target_money" property="targetMoney" jdbcType="decimal" />
+        <result column="period" property="period" jdbcType="int" />
+        <result column="state" property="state" jdbcType="int" />
+        <result column="audit_dscp" property="auditDscp" jdbcType="varchar" />
+        <result column="audit_dscp_prel" property="auditDscpPrel" jdbcType="varchar" />
+        <result column="audit_dscp_again" property="auditDscpAgain" jdbcType="varchar" />
+        <result column="send_type" property="sendType" jdbcType="int" />
+        <result column="create_time" property="createTime" jdbcType="timestamp" />
+        <result column="success_time" property="successTime" jdbcType="timestamp" />
+        <result column="remark" property="remark" jdbcType="varchar" />
+        <result column="haier_seq" property="haierSeq" jdbcType="varchar" />
+        <result column="haier_cde" property="haierCde" jdbcType="varchar" />
+        <result column="loana_mount" property="loanaMount" jdbcType="decimal" />
+        <result column="contract_number" property="contractNumber" jdbcType="varchar" />
+        <result column="repayment_method" property="repaymentMethod" jdbcType="varchar" />
+        <result column="repayment_amount" property="repaymentAmount" jdbcType="decimal" />
+        <result column="project_id" property="projectId" jdbcType="int" />
+        <result column="project_name" property="projectName" jdbcType="varchar" />
+        <result column="guarantee" property="guarantee" jdbcType="varchar" />
+        <result column="apply_amount" property="applyAmount" jdbcType="decimal" />
+        <result column="maintain_id" property="maintainId" jdbcType="int" />
+        <result column="extend_id" property="extendId" jdbcType="int" />
+        <result column="send_phone" property="sendPhone" jdbcType="varchar" />
+        <result column="phone_describe" property="phoneDescribe" jdbcType="varchar" />
+        <result column="latitude" property="latitude" jdbcType="varchar" />
+        <result column="longitude" property="longitude" jdbcType="varchar" />
+        <result column="order_channel" property="orderChannel" jdbcType="varchar" />
+        <result column="apply_no" property="applyNo" jdbcType="varchar" />
+        <result column="is_send" property="isSend" jdbcType="int" />
+        <result column="realname" property="realname" jdbcType="varchar" />
+        <result column="idcard" property="idcard" jdbcType="varchar" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id,title,borrow_orderid,mobile,hos_id,target_money,period,state,audit_dscp,audit_dscp_prel,audit_dscp_again,send_type,create_time,success_time,remark,haier_seq,haier_cde,loana_mount,contract_number,repayment_method,repayment_amount,project_id,project_name,guarantee,apply_amount,maintain_id,extend_id,send_phone,phone_describe,latitude,longitude,order_channel,apply_no,is_send,realname,idcard
+    </sql>
+
+
+    <select id="getById" resultType="com.quinn.app.model.entity.BorrowOrder">
+        select * from borrow_order where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.quinn.app.model.entity.BorrowOrder" >
+        insert into borrow_order (
+          <include refid="Base_Column_List" />
+        )
+        values (
+        #{id},#{title},#{borrowOrderid},#{mobile},#{hosId},#{targetMoney},#{period},#{state},#{auditDscp},#{auditDscpPrel},#{auditDscpAgain},#{sendType},#{createTime},#{successTime},#{remark},#{haierSeq},#{haierCde},#{loanaMount},#{contractNumber},#{repaymentMethod},#{repaymentAmount},#{projectId},#{projectName},#{guarantee},#{applyAmount},#{maintainId},#{extendId},#{sendPhone},#{phoneDescribe},#{latitude},#{longitude},#{orderChannel},#{applyNo},#{isSend},#{realname},#{idcard}
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.quinn.app.model.entity.BorrowOrder" >
+      update borrow_order
+      <set>
+        id = #{id}
+        title = #{title}
+        borrow_orderid = #{borrowOrderid}
+        mobile = #{mobile}
+        hos_id = #{hosId}
+        target_money = #{targetMoney}
+        period = #{period}
+        state = #{state}
+        audit_dscp = #{auditDscp}
+        audit_dscp_prel = #{auditDscpPrel}
+        audit_dscp_again = #{auditDscpAgain}
+        send_type = #{sendType}
+        create_time = #{createTime}
+        success_time = #{successTime}
+        remark = #{remark}
+        haier_seq = #{haierSeq}
+        haier_cde = #{haierCde}
+        loana_mount = #{loanaMount}
+        contract_number = #{contractNumber}
+        repayment_method = #{repaymentMethod}
+        repayment_amount = #{repaymentAmount}
+        project_id = #{projectId}
+        project_name = #{projectName}
+        guarantee = #{guarantee}
+        apply_amount = #{applyAmount}
+        maintain_id = #{maintainId}
+        extend_id = #{extendId}
+        send_phone = #{sendPhone}
+        phone_describe = #{phoneDescribe}
+        latitude = #{latitude}
+        longitude = #{longitude}
+        order_channel = #{orderChannel}
+        apply_no = #{applyNo}
+        is_send = #{isSend}
+        realname = #{realname}
+        idcard = #{idcard}
+      </set>
+      where id = #{id}
+    </update>
+
+    <update id="updateByIdSelective" parameterType="com.quinn.app.model.entity.BorrowOrder" >
+    update borrow_order
+    <set>
+        <if test="id != null" >
+        id = #{id}
+        </if>
+        <if test="title != null" >
+        title = #{title}
+        </if>
+        <if test="borrowOrderid != null" >
+        borrow_orderid = #{borrowOrderid}
+        </if>
+        <if test="mobile != null" >
+        mobile = #{mobile}
+        </if>
+        <if test="hosId != null" >
+        hos_id = #{hosId}
+        </if>
+        <if test="targetMoney != null" >
+        target_money = #{targetMoney}
+        </if>
+        <if test="period != null" >
+        period = #{period}
+        </if>
+        <if test="state != null" >
+        state = #{state}
+        </if>
+        <if test="auditDscp != null" >
+        audit_dscp = #{auditDscp}
+        </if>
+        <if test="auditDscpPrel != null" >
+        audit_dscp_prel = #{auditDscpPrel}
+        </if>
+        <if test="auditDscpAgain != null" >
+        audit_dscp_again = #{auditDscpAgain}
+        </if>
+        <if test="sendType != null" >
+        send_type = #{sendType}
+        </if>
+        <if test="createTime != null" >
+        create_time = #{createTime}
+        </if>
+        <if test="successTime != null" >
+        success_time = #{successTime}
+        </if>
+        <if test="remark != null" >
+        remark = #{remark}
+        </if>
+        <if test="haierSeq != null" >
+        haier_seq = #{haierSeq}
+        </if>
+        <if test="haierCde != null" >
+        haier_cde = #{haierCde}
+        </if>
+        <if test="loanaMount != null" >
+        loana_mount = #{loanaMount}
+        </if>
+        <if test="contractNumber != null" >
+        contract_number = #{contractNumber}
+        </if>
+        <if test="repaymentMethod != null" >
+        repayment_method = #{repaymentMethod}
+        </if>
+        <if test="repaymentAmount != null" >
+        repayment_amount = #{repaymentAmount}
+        </if>
+        <if test="projectId != null" >
+        project_id = #{projectId}
+        </if>
+        <if test="projectName != null" >
+        project_name = #{projectName}
+        </if>
+        <if test="guarantee != null" >
+        guarantee = #{guarantee}
+        </if>
+        <if test="applyAmount != null" >
+        apply_amount = #{applyAmount}
+        </if>
+        <if test="maintainId != null" >
+        maintain_id = #{maintainId}
+        </if>
+        <if test="extendId != null" >
+        extend_id = #{extendId}
+        </if>
+        <if test="sendPhone != null" >
+        send_phone = #{sendPhone}
+        </if>
+        <if test="phoneDescribe != null" >
+        phone_describe = #{phoneDescribe}
+        </if>
+        <if test="latitude != null" >
+        latitude = #{latitude}
+        </if>
+        <if test="longitude != null" >
+        longitude = #{longitude}
+        </if>
+        <if test="orderChannel != null" >
+        order_channel = #{orderChannel}
+        </if>
+        <if test="applyNo != null" >
+        apply_no = #{applyNo}
+        </if>
+        <if test="isSend != null" >
+        is_send = #{isSend}
+        </if>
+        <if test="realname != null" >
+        realname = #{realname}
+        </if>
+        <if test="idcard != null" >
+        idcard = #{idcard}
+        </if>
+    </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>
