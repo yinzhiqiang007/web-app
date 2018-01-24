@@ -1,0 +1,29 @@
+server:
+  context-path: /boot
+  port: 8080
+
+#
+#spring:
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/view/
+#      suffix: .jsp
+#  thymeleaf:
+#    mode: LEGACYHTML5
+
+#开发
+app:
+  datasource:
+      driver: com.mysql.Driver
+      type: mysql
+      url: jdbc:mysql://localhost:3306/medcfc_pay?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+
+payment:
+  datasource:
+      driver: com.mysql.Driver
+      type: mysql
+      url: jdbc:mysql://localhost:3306/medcfc_pay?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root

@@ -1,8 +1,12 @@
 
 
 
-#spring.view.prefix=/WEB-INF/jsp/
-#spring.view.suffix=.jsp
+server.context-path=/boot
+server.port=8080
+
+
+spring.mvc.view.prefix=/WEB-INF/view/
+spring.mvc.view.suffix=.jsp
 
 #开发
 app.datasource.driver=com.mysql.Driver
