@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quinn.app.dao.UserDao">
+
+
+    <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.User" >
+        <result column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+        <result column="gender" property="gender" jdbcType="INTEGER" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id,name,mobile,idcard,gender,address
+    </sql>
+
+
+    <select id="getById" resultType="com.quinn.app.model.entity.User">
+        select * from tb_user where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.quinn.app.model.entity.User" >
+        insert into tb_user (
+          <include refid="Base_Column_List" />
+        )
+        values (
+        #{id},#{name},#{mobile},#{idcard},#{gender},#{address}
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.quinn.app.model.entity.User" >
+      update tb_user
+      <set>
+        id = #{id}
+        name = #{name}
+        mobile = #{mobile}
+        idcard = #{idcard}
+        gender = #{gender}
+        address = #{address}
+      </set>
+      where id = #{id}
+    </update>
+
+    <update id="updateByIdSelective" parameterType="com.quinn.app.model.entity.User" >
+    update tb_user
+    <set>
+        <if test="id != null" >
+        id = #{id}
+        </if>
+        <if test="name != null" >
+        name = #{name}
+        </if>
+        <if test="mobile != null" >
+        mobile = #{mobile}
+        </if>
+        <if test="idcard != null" >
+        idcard = #{idcard}
+        </if>
+        <if test="gender != null" >
+        gender = #{gender}
+        </if>
+        <if test="address != null" >
+        address = #{address}
+        </if>
+    </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>

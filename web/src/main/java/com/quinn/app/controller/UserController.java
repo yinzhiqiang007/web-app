@@ -1,17 +1,17 @@
 package com.quinn.app.controller;
 
-import com.quinn.app.common.util.CommonUtil;
-import com.quinn.app.model.Base;
-import com.quinn.app.model.entity.Bank;
-import com.quinn.app.service.BankService;
+import com.quinn.app.service.UserService;
+import com.quinn.payment.model.entity.Bank;
+import com.quinn.payment.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Quinn
@@ -25,11 +25,22 @@ public class UserController {
     @Autowired
     private BankService bankService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/test")
     @ResponseBody
-    public Base test(String id){
-//        Bank b = bankService.getById(id);
-        return null;
+    public Map<String,Object> test(String id){
+        Map<String,Object> resultMap = new HashMap();
+        resultMap.put("user",userService.getById("123"));
+        resultMap.put("bank",bankService.getById(id));
+        return resultMap;
+    }
+    @RequestMapping("/test2")
+    @ResponseBody
+    public Object test2(String id){
+        Object o = bankService.getList();
+        return o;
     }
 
     @RequestMapping("/user")

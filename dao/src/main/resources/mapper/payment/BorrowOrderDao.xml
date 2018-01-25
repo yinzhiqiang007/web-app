@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.quinn.app.dao.BorrowOrderDao">
+<mapper namespace="com.quinn.payment.dao.BorrowOrderDao">
 
 
-    <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.BorrowOrder" >
+    <resultMap id="BaseResultMap" type="com.quinn.payment.model.entity.BorrowOrder" >
         <result column="id" property="id" jdbcType="BIGINT" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="borrow_orderid" property="borrowOrderid" jdbcType="VARCHAR" />
@@ -47,11 +47,11 @@
     </sql>
 
 
-    <select id="getById" resultType="com.quinn.app.model.entity.BorrowOrder">
+    <select id="getById" resultType="com.quinn.payment.model.entity.BorrowOrder">
         select * from borrow_order where id=#{id}
     </select>
 
-    <insert id="insert" parameterType="com.quinn.app.model.entity.BorrowOrder" >
+    <insert id="insert" parameterType="com.quinn.payment.model.entity.BorrowOrder" >
         insert into borrow_order (
           <include refid="Base_Column_List" />
         )
@@ -60,7 +60,7 @@
         )
     </insert>
 
-    <update id="updateById" parameterType="com.quinn.app.model.entity.BorrowOrder" >
+    <update id="updateById" parameterType="com.quinn.payment.model.entity.BorrowOrder" >
       update borrow_order
       <set>
         id = #{id}
@@ -103,7 +103,7 @@
       where id = #{id}
     </update>
 
-    <update id="updateByIdSelective" parameterType="com.quinn.app.model.entity.BorrowOrder" >
+    <update id="updateByIdSelective" parameterType="com.quinn.payment.model.entity.BorrowOrder" >
     update borrow_order
     <set>
         <if test="id != null" >

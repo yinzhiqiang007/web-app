@@ -1,7 +1,7 @@
-package com.quinn.app.model.entity;
+package com.quinn.payment.model.entity;
 
 
-import com.quinn.app.model.Base;
+import com.quinn.Base;
 import java.util.*;
 import java.math.BigDecimal;
 

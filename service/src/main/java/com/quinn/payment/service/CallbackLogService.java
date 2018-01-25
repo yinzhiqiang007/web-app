@@ -1,6 +1,7 @@
-package com.quinn.app.service;
+package com.quinn.payment.service;
 
 import java.util.*;
+import com.quinn.BaseService;
 
 /**
  * @author Quinn

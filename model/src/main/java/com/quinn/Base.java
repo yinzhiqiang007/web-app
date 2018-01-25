@@ -1,4 +1,4 @@
-package com.quinn.app.model;
+package com.quinn;
 
 /**
  * @author Quinn

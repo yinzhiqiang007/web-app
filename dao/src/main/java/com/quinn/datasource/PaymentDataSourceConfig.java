@@ -1,4 +1,4 @@
-package com.quinn.payment.datasource;
+package com.quinn.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -55,7 +54,7 @@ public class PaymentDataSourceConfig {
     }
 
     @Bean(name = "paymentTransactionManager")
-    public DataSourceTransactionManager masterTransactionManager() {
+    public DataSourceTransactionManager paymentTransactionManager() {
         return new DataSourceTransactionManager(paymentDataSource());
     }
 

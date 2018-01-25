@@ -1,14 +1,12 @@
 package com.quinn.payment.dao;
 
-import com.quinn.app.dao.BaseDao;
+import com.quinn.BaseDao;
 import org.springframework.stereotype.Repository;
-
-import java.util.*;
 
 /**
  * @author Quinn
  * @date 2018/1/15
  */
-@Repository("callbackLogDao")
-public interface CallbackLogDao {
+@Repository
+public interface CallbackLogDao extends BaseDao {
 }
