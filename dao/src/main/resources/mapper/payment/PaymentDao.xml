@@ -4,32 +4,32 @@
 
 
     <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.Payment" >
-        <result column="id" property="id" jdbcType="bigint" />
-        <result column="payDate" property="payDate" jdbcType="varchar" />
-        <result column="seq" property="seq" jdbcType="int" />
-        <result column="patientName" property="patientName" jdbcType="varchar" />
-        <result column="money" property="money" jdbcType="decimal" />
-        <result column="hospitalName" property="hospitalName" jdbcType="varchar" />
-        <result column="bankCode" property="bankCode" jdbcType="varchar" />
-        <result column="bankCard" property="bankCard" jdbcType="varchar" />
-        <result column="bankName" property="bankName" jdbcType="varchar" />
-        <result column="bankFullName" property="bankFullName" jdbcType="varchar" />
-        <result column="currency" property="currency" jdbcType="varchar" />
-        <result column="acctName" property="acctName" jdbcType="varchar" />
-        <result column="cardFlag" property="cardFlag" jdbcType="int" />
-        <result column="desc" property="desc" jdbcType="varchar" />
-        <result column="status" property="status" jdbcType="int" />
-        <result column="resultCode" property="resultCode" jdbcType="varchar" />
-        <result column="resultMsg" property="resultMsg" jdbcType="varchar" />
-        <result column="payBillId" property="payBillId" jdbcType="varchar" />
-        <result column="createTime" property="createTime" jdbcType="datetime" />
-        <result column="updateTime" property="updateTime" jdbcType="datetime" />
-        <result column="lock" property="lock" jdbcType="varchar" />
-        <result column="confirmCode" property="confirmCode" jdbcType="varchar" />
-        <result column="mail" property="mail" jdbcType="varchar" />
-        <result column="contractNumber" property="contractNumber" jdbcType="varchar" />
-        <result column="patientIdcard" property="patientIdcard" jdbcType="varchar" />
-        <result column="deleteFlag" property="deleteFlag" jdbcType="int" />
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="payDate" property="payDate" jdbcType="VARCHAR" />
+        <result column="seq" property="seq" jdbcType="INTEGER" />
+        <result column="patientName" property="patientName" jdbcType="VARCHAR" />
+        <result column="money" property="money" jdbcType="DECIMAL" />
+        <result column="hospitalName" property="hospitalName" jdbcType="VARCHAR" />
+        <result column="bankCode" property="bankCode" jdbcType="VARCHAR" />
+        <result column="bankCard" property="bankCard" jdbcType="VARCHAR" />
+        <result column="bankName" property="bankName" jdbcType="VARCHAR" />
+        <result column="bankFullName" property="bankFullName" jdbcType="VARCHAR" />
+        <result column="currency" property="currency" jdbcType="VARCHAR" />
+        <result column="acctName" property="acctName" jdbcType="VARCHAR" />
+        <result column="cardFlag" property="cardFlag" jdbcType="INTEGER" />
+        <result column="desc" property="desc" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="resultCode" property="resultCode" jdbcType="VARCHAR" />
+        <result column="resultMsg" property="resultMsg" jdbcType="VARCHAR" />
+        <result column="payBillId" property="payBillId" jdbcType="VARCHAR" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="lock" property="lock" jdbcType="VARCHAR" />
+        <result column="confirmCode" property="confirmCode" jdbcType="VARCHAR" />
+        <result column="mail" property="mail" jdbcType="VARCHAR" />
+        <result column="contractNumber" property="contractNumber" jdbcType="VARCHAR" />
+        <result column="patientIdcard" property="patientIdcard" jdbcType="VARCHAR" />
+        <result column="deleteFlag" property="deleteFlag" jdbcType="INTEGER" />
     </resultMap>
 
     <sql id="Base_Column_List" >

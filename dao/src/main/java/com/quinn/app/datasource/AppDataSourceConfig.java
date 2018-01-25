@@ -21,10 +21,10 @@ import javax.sql.DataSource;
  * @EnableTransactionManagement 支持开启事物
  * @package com.quinn.app.datasource
  */
-@Configuration
-@EnableTransactionManagement
-@MapperScan(basePackages = DataSourceConfig.PACKAGE, sqlSessionFactoryRef = "appSqlSessionFactory")
-public class DataSourceConfig {
+//@Configuration
+//@EnableTransactionManagement
+//@MapperScan(basePackages = AppDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "appSqlSessionFactory")
+public class AppDataSourceConfig {
 
     // 精确到 master 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.quinn.app.dao";
@@ -44,7 +44,6 @@ public class DataSourceConfig {
     private String driverClass;
 
     @Bean(name = "appDataSource")
-    @Primary
     public DataSource appDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
@@ -55,18 +54,16 @@ public class DataSourceConfig {
     }
 
     @Bean(name = "appTransactionManager")
-    @Primary
     public DataSourceTransactionManager masterTransactionManager() {
         return new DataSourceTransactionManager(appDataSource());
     }
 
     @Bean(name = "appSqlSessionFactory")
-    @Primary
     public SqlSessionFactory masterSqlSessionFactory(@Qualifier("appDataSource") DataSource masterDataSource)
             throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(masterDataSource);
-        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(DataSourceConfig.MAPPER_LOCATION));
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(AppDataSourceConfig.MAPPER_LOCATION));
         return sessionFactory.getObject();
     }
 

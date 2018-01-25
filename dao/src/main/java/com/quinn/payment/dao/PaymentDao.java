@@ -9,6 +9,6 @@ import java.util.*;
  * @author Quinn
  * @date 2018/1/15
  */
-@Repository
-public interface PaymentDao extends BaseDao {
+@Repository("paymentDao")
+public interface PaymentDao  {
 }

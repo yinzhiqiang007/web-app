@@ -15,13 +15,13 @@ import java.util.ArrayList;
  */
 @Service("bankService")
 public class BankServiceImpl extends BaseServiceImpl implements BankService {
-
-    @Autowired
-    private BankDao bankDao;
+//
+//    @Autowired
+//    private BankDao bankDao;
 
 
     @Override
     public void test() {
-        bankDao.getById("123");
+//        bankDao.getById("123");
     }
 }

@@ -28,8 +28,8 @@ public class UserController {
     @RequestMapping("/test")
     @ResponseBody
     public Base test(String id){
-        Bank b = bankService.getById(id);
-        return b;
+//        Bank b = bankService.getById(id);
+        return null;
     }
 
     @RequestMapping("/user")

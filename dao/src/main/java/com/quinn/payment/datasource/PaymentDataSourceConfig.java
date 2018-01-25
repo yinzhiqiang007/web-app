@@ -24,8 +24,8 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = DataSourceConfig.PACKAGE, sqlSessionFactoryRef = "paymentSqlSessionFactory")
-public class DataSourceConfig {
+@MapperScan(basePackages = PaymentDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "paymentSqlSessionFactory")
+public class PaymentDataSourceConfig {
 
     // 精确到 master 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.quinn.payment.dao";
@@ -45,7 +45,6 @@ public class DataSourceConfig {
     private String driverClass;
 
     @Bean(name = "paymentDataSource")
-    @Primary
     public DataSource paymentDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
@@ -56,18 +55,16 @@ public class DataSourceConfig {
     }
 
     @Bean(name = "paymentTransactionManager")
-    @Primary
     public DataSourceTransactionManager masterTransactionManager() {
         return new DataSourceTransactionManager(paymentDataSource());
     }
 
     @Bean(name = "paymentSqlSessionFactory")
-    @Primary
-    public SqlSessionFactory masterSqlSessionFactory(@Qualifier("paymentDataSource") DataSource masterDataSource)
+    public SqlSessionFactory paymentSqlSessionFactory(@Qualifier("paymentDataSource") DataSource masterDataSource)
             throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(masterDataSource);
-        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(DataSourceConfig.MAPPER_LOCATION));
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(PaymentDataSourceConfig.MAPPER_LOCATION));
         return sessionFactory.getObject();
     }
 

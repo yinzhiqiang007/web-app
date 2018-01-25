@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
  * @author Quinn
  * @date 2018/1/15
  */
-@Repository
-public interface BankDao extends BaseDao {
+@Repository("bankDao")
+public interface BankDao {
 }

@@ -4,11 +4,11 @@
 
 
     <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.CallbackLog" >
-        <result column="id" property="id" jdbcType="bigint" />
-        <result column="orderId" property="orderId" jdbcType="varchar" />
-        <result column="content" property="content" jdbcType="text" />
-        <result column="status" property="status" jdbcType="varchar" />
-        <result column="createTime" property="createTime" jdbcType="datetime" />
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="orderId" property="orderId" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="LONGVARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
 
     <sql id="Base_Column_List" >

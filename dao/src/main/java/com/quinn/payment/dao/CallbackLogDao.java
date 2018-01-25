@@ -9,6 +9,6 @@ import java.util.*;
  * @author Quinn
  * @date 2018/1/15
  */
-@Repository
-public interface CallbackLogDao extends BaseDao {
+@Repository("callbackLogDao")
+public interface CallbackLogDao {
 }
