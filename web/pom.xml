@@ -13,6 +13,12 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.quinn.app</groupId>
             <artifactId>service</artifactId>
@@ -90,6 +96,13 @@
                 <configuration>
                     <mainClass>com.quinn.app.Application</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- 拷贝当前环境文件 -->
             <plugin>
