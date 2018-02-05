@@ -136,7 +136,6 @@
                     <include>templates/**</include>
                     <!--<include>config/dev/*.properties</include>-->
                     <!--<include>config/${env}/*.properties</include>-->
-
                 </includes>
                 <filtering>false</filtering>
             </resource>
