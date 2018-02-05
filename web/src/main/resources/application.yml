@@ -2,14 +2,19 @@ server:
   context-path: /boot
   port: 8080
 
-
 spring:
   thymeleaf:
     mode: LEGACYHTML5
+  config:
+    location: config/dev,config/test,config/prod
+#  profiles:
+#    active: config/${env}
 #  mvc:
 #    view:
 #      prefix: /WEB-INF/view/
 #      suffix: .jsp
+
+
 
 #开发
 app:

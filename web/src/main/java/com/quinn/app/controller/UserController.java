@@ -1,5 +1,6 @@
 package com.quinn.app.controller;
 
+import com.quinn.app.Test;
 import com.quinn.app.service.UserService;
 import com.quinn.payment.model.entity.Bank;
 import com.quinn.payment.service.BankService;
@@ -27,11 +28,15 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+//
+    @Autowired
+    private Test testtt;
 
     @RequestMapping("/test")
     @ResponseBody
     public Map<String,Object> test(String id){
         Map<String,Object> resultMap = new HashMap();
+        System.out.println(this.testtt.getSs());
         resultMap.put("user",userService.getById("123"));
         resultMap.put("bank",bankService.getById(id));
         return resultMap;
