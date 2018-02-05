@@ -18,6 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        System.out.println("test");
         return application.sources(Application.class);
     }
     public static void main(String[] args) {
