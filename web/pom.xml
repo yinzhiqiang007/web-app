@@ -87,6 +87,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.quinn.app.Application</mainClass>
+                </configuration>
             </plugin>
             <!-- 拷贝当前环境文件 -->
             <plugin>

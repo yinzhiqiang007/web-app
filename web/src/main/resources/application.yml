@@ -17,18 +17,18 @@ spring:
 
 
 #开发
-app:
-  datasource:
-      driver: com.mysql.jdbc.Driver
-      type: mysql
-      url: jdbc:mysql://localhost:3306/web_app?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
-      username: root
-      password: root
-
-payment:
-  datasource:
-      driver: com.mysql.jdbc.Driver
-      type: mysql
-      url: jdbc:mysql://localhost:3306/medcfc_pay?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
-      username: root
-      password: root
+#app:
+#  datasource:
+#      driver: com.mysql.jdbc.Driver
+#      type: mysql
+#      url: jdbc:mysql://localhost:3306/web_app?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+#      username: root
+#      password: root
+#
+#payment:
+#  datasource:
+#      driver: com.mysql.jdbc.Driver
+#      type: mysql
+#      url: jdbc:mysql://localhost:3306/medcfc_pay?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+#      username: root
+#      password: root
