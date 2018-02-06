@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quinn.yfq.dao.UserInfDao">
+
+
+    <resultMap id="BaseResultMap" type="com.quinn.yfq.model.entity.UserInf" >
+        <result column="ID" property="ID" jdbcType="VARCHAR" />
+        <result column="LOGIN_NAME" property="LOGINNAME" jdbcType="VARCHAR" />
+        <result column="LOGIN_PASSWORD" property="LOGINPASSWORD" jdbcType="VARCHAR" />
+        <result column="USER_NAME" property="USERNAME" jdbcType="VARCHAR" />
+        <result column="NICK_NAME" property="NICKNAME" jdbcType="VARCHAR" />
+        <result column="ID_NO" property="IDNO" jdbcType="VARCHAR" />
+        <result column="CARD_NO" property="CARDNO" jdbcType="VARCHAR" />
+        <result column="PASSPORT_NO" property="PASSPORTNO" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="EMAIL" jdbcType="VARCHAR" />
+        <result column="MOBILE" property="MOBILE" jdbcType="VARCHAR" />
+        <result column="BELONG_ORG_ID" property="BELONGORGID" jdbcType="VARCHAR" />
+        <result column="TEL_NO" property="TELNO" jdbcType="VARCHAR" />
+        <result column="INNER_TEL_NO" property="INNERTELNO" jdbcType="VARCHAR" />
+        <result column="INIT_STATUS" property="INITSTATUS" jdbcType="VARCHAR" />
+        <result column="LASTED_MODIFY" property="LASTEDMODIFY" jdbcType="VARCHAR" />
+        <result column="IS_ACCESS_CONTROL" property="ISACCESSCONTROL" jdbcType="INTEGER" />
+        <result column="CREATE_DATETIME" property="CREATEDATETIME" jdbcType="TIMESTAMP" />
+        <result column="CREATE_OPERATOR_ID" property="CREATEOPERATORID" jdbcType="VARCHAR" />
+        <result column="LAST_UPDATE_DATETIME" property="LASTUPDATEDATETIME" jdbcType="TIMESTAMP" />
+        <result column="LAST_UPDATE_OPERATOR_ID" property="LASTUPDATEOPERATORID" jdbcType="VARCHAR" />
+        <result column="DATA_STATUS" property="DATASTATUS" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    ID,LOGIN_NAME,LOGIN_PASSWORD,USER_NAME,NICK_NAME,ID_NO,CARD_NO,PASSPORT_NO,EMAIL,MOBILE,BELONG_ORG_ID,TEL_NO,INNER_TEL_NO,INIT_STATUS,LASTED_MODIFY,IS_ACCESS_CONTROL,CREATE_DATETIME,CREATE_OPERATOR_ID,LAST_UPDATE_DATETIME,LAST_UPDATE_OPERATOR_ID,DATA_STATUS
+    </sql>
+
+
+    <select id="getById" resultType="com.quinn.yfq.model.entity.UserInf">
+        select * from ti_user_inf where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.quinn.yfq.model.entity.UserInf" >
+        insert into ti_user_inf (
+          <include refid="Base_Column_List" />
+        )
+        values (
+        #{ID},#{LOGINNAME},#{LOGINPASSWORD},#{USERNAME},#{NICKNAME},#{IDNO},#{CARDNO},#{PASSPORTNO},#{EMAIL},#{MOBILE},#{BELONGORGID},#{TELNO},#{INNERTELNO},#{INITSTATUS},#{LASTEDMODIFY},#{ISACCESSCONTROL},#{CREATEDATETIME},#{CREATEOPERATORID},#{LASTUPDATEDATETIME},#{LASTUPDATEOPERATORID},#{DATASTATUS}
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.quinn.yfq.model.entity.UserInf" >
+      update ti_user_inf
+      <set>
+        ID = #{ID}
+        LOGIN_NAME = #{LOGINNAME}
+        LOGIN_PASSWORD = #{LOGINPASSWORD}
+        USER_NAME = #{USERNAME}
+        NICK_NAME = #{NICKNAME}
+        ID_NO = #{IDNO}
+        CARD_NO = #{CARDNO}
+        PASSPORT_NO = #{PASSPORTNO}
+        EMAIL = #{EMAIL}
+        MOBILE = #{MOBILE}
+        BELONG_ORG_ID = #{BELONGORGID}
+        TEL_NO = #{TELNO}
+        INNER_TEL_NO = #{INNERTELNO}
+        INIT_STATUS = #{INITSTATUS}
+        LASTED_MODIFY = #{LASTEDMODIFY}
+        IS_ACCESS_CONTROL = #{ISACCESSCONTROL}
+        CREATE_DATETIME = #{CREATEDATETIME}
+        CREATE_OPERATOR_ID = #{CREATEOPERATORID}
+        LAST_UPDATE_DATETIME = #{LASTUPDATEDATETIME}
+        LAST_UPDATE_OPERATOR_ID = #{LASTUPDATEOPERATORID}
+        DATA_STATUS = #{DATASTATUS}
+      </set>
+      where id = #{id}
+    </update>
+
+    <update id="updateByIdSelective" parameterType="com.quinn.yfq.model.entity.UserInf" >
+    update ti_user_inf
+    <set>
+        <if test="ID != null" >
+        ID = #{ID}
+        </if>
+        <if test="LOGINNAME != null" >
+        LOGIN_NAME = #{LOGINNAME}
+        </if>
+        <if test="LOGINPASSWORD != null" >
+        LOGIN_PASSWORD = #{LOGINPASSWORD}
+        </if>
+        <if test="USERNAME != null" >
+        USER_NAME = #{USERNAME}
+        </if>
+        <if test="NICKNAME != null" >
+        NICK_NAME = #{NICKNAME}
+        </if>
+        <if test="IDNO != null" >
+        ID_NO = #{IDNO}
+        </if>
+        <if test="CARDNO != null" >
+        CARD_NO = #{CARDNO}
+        </if>
+        <if test="PASSPORTNO != null" >
+        PASSPORT_NO = #{PASSPORTNO}
+        </if>
+        <if test="EMAIL != null" >
+        EMAIL = #{EMAIL}
+        </if>
+        <if test="MOBILE != null" >
+        MOBILE = #{MOBILE}
+        </if>
+        <if test="BELONGORGID != null" >
+        BELONG_ORG_ID = #{BELONGORGID}
+        </if>
+        <if test="TELNO != null" >
+        TEL_NO = #{TELNO}
+        </if>
+        <if test="INNERTELNO != null" >
+        INNER_TEL_NO = #{INNERTELNO}
+        </if>
+        <if test="INITSTATUS != null" >
+        INIT_STATUS = #{INITSTATUS}
+        </if>
+        <if test="LASTEDMODIFY != null" >
+        LASTED_MODIFY = #{LASTEDMODIFY}
+        </if>
+        <if test="ISACCESSCONTROL != null" >
+        IS_ACCESS_CONTROL = #{ISACCESSCONTROL}
+        </if>
+        <if test="CREATEDATETIME != null" >
+        CREATE_DATETIME = #{CREATEDATETIME}
+        </if>
+        <if test="CREATEOPERATORID != null" >
+        CREATE_OPERATOR_ID = #{CREATEOPERATORID}
+        </if>
+        <if test="LASTUPDATEDATETIME != null" >
+        LAST_UPDATE_DATETIME = #{LASTUPDATEDATETIME}
+        </if>
+        <if test="LASTUPDATEOPERATORID != null" >
+        LAST_UPDATE_OPERATOR_ID = #{LASTUPDATEOPERATORID}
+        </if>
+        <if test="DATASTATUS != null" >
+        DATA_STATUS = #{DATASTATUS}
+        </if>
+    </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>

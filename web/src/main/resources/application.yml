@@ -14,3 +14,13 @@ spring:
 #      prefix: /WEB-INF/view/
 #      suffix: .jsp
 
+
+#logging:
+#  level:
+#    org:
+#      springframework: WARN
+#      springboot:
+#        dao: DEBUG
+#    com:
+#      myjsp: debug
+#  file: D:/logs/spring-boot-logging.log

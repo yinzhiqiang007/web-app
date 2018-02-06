@@ -3,6 +3,7 @@ package com.quinn.app.dao;
 import java.util.*;
 
 import com.quinn.BaseDao;
+import com.quinn.app.model.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,4 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserDao extends BaseDao {
+
+    int updateTest(User user);
 }

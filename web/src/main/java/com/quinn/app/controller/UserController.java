@@ -1,9 +1,13 @@
 package com.quinn.app.controller;
 
 import com.quinn.app.Test;
+import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
 import com.quinn.payment.model.entity.Bank;
 import com.quinn.payment.service.BankService;
+import com.quinn.yfq.service.UserInfService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,11 +27,16 @@ import java.util.Map;
 @RequestMapping("/user/")
 public class UserController {
 
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private BankService bankService;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserInfService userInfService;
 
     @Autowired
     private com.quinn.yfq.service.UserService yfqUserService;
@@ -40,9 +49,13 @@ public class UserController {
     public Map<String,Object> test(String id){
         Map<String,Object> resultMap = new HashMap();
         System.out.println(this.testtt.getSs());
-        resultMap.put("user",userService.getById("123"));
+        User user = userService.getById("123");
+        this.userService.updateTest(user);
+        resultMap.put("user",user);
+        resultMap.put("userInf", userInfService.getById("8771a3a222924292b3d1a525c19d14af"));
         resultMap.put("bank",bankService.getById(id));
         resultMap.put("yfqUser",yfqUserService.getById(id));
+        logger.info("web_app test.....");
         return resultMap;
     }
     @RequestMapping("/test2")

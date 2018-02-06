@@ -1,5 +1,6 @@
 package com.quinn.app.service.impl;
 
+import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,4 +16,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao> implements UserSer
 
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public int updateTest(User user) {
+        System.out.println(11111111);
+        return this.userDao.updateTest(user);
+    }
 }
