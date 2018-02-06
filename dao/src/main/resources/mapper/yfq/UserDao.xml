@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quinn.yfq.dao.UserDao">
+
+
+    <resultMap id="BaseResultMap" type="com.quinn.yfq.model.entity.User" >
+        <result column="ID" property="ID" jdbcType="BIGINT" />
+        <result column="USER_ID" property="USERID" jdbcType="VARCHAR" />
+        <result column="MOBILE" property="MOBILE" jdbcType="VARCHAR" />
+        <result column="REAL_NAME" property="REALNAME" jdbcType="VARCHAR" />
+        <result column="ID_CARD" property="IDCARD" jdbcType="VARCHAR" />
+        <result column="EDUCATION_OPT" property="EDUCATIONOPT" jdbcType="INTEGER" />
+        <result column="MARRIAGE_OPT" property="MARRIAGEOPT" jdbcType="INTEGER" />
+        <result column="LIVE_PROVINCE" property="LIVEPROVINCE" jdbcType="VARCHAR" />
+        <result column="LIVE_CITY" property="LIVECITY" jdbcType="VARCHAR" />
+        <result column="LIVE_AREA" property="LIVEAREA" jdbcType="VARCHAR" />
+        <result column="LIVE_ADDRESS" property="LIVEADDRESS" jdbcType="VARCHAR" />
+        <result column="LIVE_TYPE" property="LIVETYPE" jdbcType="INTEGER" />
+        <result column="PROFESSION_OPT" property="PROFESSIONOPT" jdbcType="INTEGER" />
+        <result column="COMPANY_NAME" property="COMPANYNAME" jdbcType="VARCHAR" />
+        <result column="COMPANY_NATURE" property="COMPANYNATURE" jdbcType="INTEGER" />
+        <result column="COMPANY_ADDR_PROVINCE" property="COMPANYADDRPROVINCE" jdbcType="VARCHAR" />
+        <result column="COMPANY_ADDR_CITY" property="COMPANYADDRCITY" jdbcType="VARCHAR" />
+        <result column="COMPANY_ADDR_AREA" property="COMPANYADDRAREA" jdbcType="VARCHAR" />
+        <result column="COMPANY_ADDR_ADDRESS" property="COMPANYADDRADDRESS" jdbcType="VARCHAR" />
+        <result column="COMPANY_TEL" property="COMPANYTEL" jdbcType="VARCHAR" />
+        <result column="COMPANY_DEPART" property="COMPANYDEPART" jdbcType="VARCHAR" />
+        <result column="STUDENT_ADMIS_TIME" property="STUDENTADMISTIME" jdbcType="VARCHAR" />
+        <result column="STUDENT_SCHOOL" property="STUDENTSCHOOL" jdbcType="VARCHAR" />
+        <result column="MONTH_INCOME" property="MONTHINCOME" jdbcType="DECIMAL" />
+        <result column="SOURCE_INCOME" property="SOURCEINCOME" jdbcType="VARCHAR" />
+        <result column="ZM_SCORE" property="ZMSCORE" jdbcType="VARCHAR" />
+        <result column="USER_STATE" property="USERSTATE" jdbcType="INTEGER" />
+        <result column="AUTH_TIME" property="AUTHTIME" jdbcType="TIMESTAMP" />
+        <result column="CREATE_TIME" property="CREATETIME" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    ID,USER_ID,MOBILE,REAL_NAME,ID_CARD,EDUCATION_OPT,MARRIAGE_OPT,LIVE_PROVINCE,LIVE_CITY,LIVE_AREA,LIVE_ADDRESS,LIVE_TYPE,PROFESSION_OPT,COMPANY_NAME,COMPANY_NATURE,COMPANY_ADDR_PROVINCE,COMPANY_ADDR_CITY,COMPANY_ADDR_AREA,COMPANY_ADDR_ADDRESS,COMPANY_TEL,COMPANY_DEPART,STUDENT_ADMIS_TIME,STUDENT_SCHOOL,MONTH_INCOME,SOURCE_INCOME,ZM_SCORE,USER_STATE,AUTH_TIME,CREATE_TIME
+    </sql>
+
+
+    <select id="getById" resultType="com.quinn.yfq.model.entity.User">
+        select * from ydc_user where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.quinn.yfq.model.entity.User" >
+        insert into ydc_user (
+          <include refid="Base_Column_List" />
+        )
+        values (
+        #{ID},#{USERID},#{MOBILE},#{REALNAME},#{IDCARD},#{EDUCATIONOPT},#{MARRIAGEOPT},#{LIVEPROVINCE},#{LIVECITY},#{LIVEAREA},#{LIVEADDRESS},#{LIVETYPE},#{PROFESSIONOPT},#{COMPANYNAME},#{COMPANYNATURE},#{COMPANYADDRPROVINCE},#{COMPANYADDRCITY},#{COMPANYADDRAREA},#{COMPANYADDRADDRESS},#{COMPANYTEL},#{COMPANYDEPART},#{STUDENTADMISTIME},#{STUDENTSCHOOL},#{MONTHINCOME},#{SOURCEINCOME},#{ZMSCORE},#{USERSTATE},#{AUTHTIME},#{CREATETIME}
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.quinn.yfq.model.entity.User" >
+      update ydc_user
+      <set>
+        ID = #{ID}
+        USER_ID = #{USERID}
+        MOBILE = #{MOBILE}
+        REAL_NAME = #{REALNAME}
+        ID_CARD = #{IDCARD}
+        EDUCATION_OPT = #{EDUCATIONOPT}
+        MARRIAGE_OPT = #{MARRIAGEOPT}
+        LIVE_PROVINCE = #{LIVEPROVINCE}
+        LIVE_CITY = #{LIVECITY}
+        LIVE_AREA = #{LIVEAREA}
+        LIVE_ADDRESS = #{LIVEADDRESS}
+        LIVE_TYPE = #{LIVETYPE}
+        PROFESSION_OPT = #{PROFESSIONOPT}
+        COMPANY_NAME = #{COMPANYNAME}
+        COMPANY_NATURE = #{COMPANYNATURE}
+        COMPANY_ADDR_PROVINCE = #{COMPANYADDRPROVINCE}
+        COMPANY_ADDR_CITY = #{COMPANYADDRCITY}
+        COMPANY_ADDR_AREA = #{COMPANYADDRAREA}
+        COMPANY_ADDR_ADDRESS = #{COMPANYADDRADDRESS}
+        COMPANY_TEL = #{COMPANYTEL}
+        COMPANY_DEPART = #{COMPANYDEPART}
+        STUDENT_ADMIS_TIME = #{STUDENTADMISTIME}
+        STUDENT_SCHOOL = #{STUDENTSCHOOL}
+        MONTH_INCOME = #{MONTHINCOME}
+        SOURCE_INCOME = #{SOURCEINCOME}
+        ZM_SCORE = #{ZMSCORE}
+        USER_STATE = #{USERSTATE}
+        AUTH_TIME = #{AUTHTIME}
+        CREATE_TIME = #{CREATETIME}
+      </set>
+      where id = #{id}
+    </update>
+
+    <update id="updateByIdSelective" parameterType="com.quinn.yfq.model.entity.User" >
+    update ydc_user
+    <set>
+        <if test="ID != null" >
+        ID = #{ID}
+        </if>
+        <if test="USERID != null" >
+        USER_ID = #{USERID}
+        </if>
+        <if test="MOBILE != null" >
+        MOBILE = #{MOBILE}
+        </if>
+        <if test="REALNAME != null" >
+        REAL_NAME = #{REALNAME}
+        </if>
+        <if test="IDCARD != null" >
+        ID_CARD = #{IDCARD}
+        </if>
+        <if test="EDUCATIONOPT != null" >
+        EDUCATION_OPT = #{EDUCATIONOPT}
+        </if>
+        <if test="MARRIAGEOPT != null" >
+        MARRIAGE_OPT = #{MARRIAGEOPT}
+        </if>
+        <if test="LIVEPROVINCE != null" >
+        LIVE_PROVINCE = #{LIVEPROVINCE}
+        </if>
+        <if test="LIVECITY != null" >
+        LIVE_CITY = #{LIVECITY}
+        </if>
+        <if test="LIVEAREA != null" >
+        LIVE_AREA = #{LIVEAREA}
+        </if>
+        <if test="LIVEADDRESS != null" >
+        LIVE_ADDRESS = #{LIVEADDRESS}
+        </if>
+        <if test="LIVETYPE != null" >
+        LIVE_TYPE = #{LIVETYPE}
+        </if>
+        <if test="PROFESSIONOPT != null" >
+        PROFESSION_OPT = #{PROFESSIONOPT}
+        </if>
+        <if test="COMPANYNAME != null" >
+        COMPANY_NAME = #{COMPANYNAME}
+        </if>
+        <if test="COMPANYNATURE != null" >
+        COMPANY_NATURE = #{COMPANYNATURE}
+        </if>
+        <if test="COMPANYADDRPROVINCE != null" >
+        COMPANY_ADDR_PROVINCE = #{COMPANYADDRPROVINCE}
+        </if>
+        <if test="COMPANYADDRCITY != null" >
+        COMPANY_ADDR_CITY = #{COMPANYADDRCITY}
+        </if>
+        <if test="COMPANYADDRAREA != null" >
+        COMPANY_ADDR_AREA = #{COMPANYADDRAREA}
+        </if>
+        <if test="COMPANYADDRADDRESS != null" >
+        COMPANY_ADDR_ADDRESS = #{COMPANYADDRADDRESS}
+        </if>
+        <if test="COMPANYTEL != null" >
+        COMPANY_TEL = #{COMPANYTEL}
+        </if>
+        <if test="COMPANYDEPART != null" >
+        COMPANY_DEPART = #{COMPANYDEPART}
+        </if>
+        <if test="STUDENTADMISTIME != null" >
+        STUDENT_ADMIS_TIME = #{STUDENTADMISTIME}
+        </if>
+        <if test="STUDENTSCHOOL != null" >
+        STUDENT_SCHOOL = #{STUDENTSCHOOL}
+        </if>
+        <if test="MONTHINCOME != null" >
+        MONTH_INCOME = #{MONTHINCOME}
+        </if>
+        <if test="SOURCEINCOME != null" >
+        SOURCE_INCOME = #{SOURCEINCOME}
+        </if>
+        <if test="ZMSCORE != null" >
+        ZM_SCORE = #{ZMSCORE}
+        </if>
+        <if test="USERSTATE != null" >
+        USER_STATE = #{USERSTATE}
+        </if>
+        <if test="AUTHTIME != null" >
+        AUTH_TIME = #{AUTHTIME}
+        </if>
+        <if test="CREATETIME != null" >
+        CREATE_TIME = #{CREATETIME}
+        </if>
+    </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>

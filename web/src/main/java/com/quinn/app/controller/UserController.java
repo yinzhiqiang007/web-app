@@ -28,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private com.quinn.yfq.service.UserService yfqUserService;
 //
     @Autowired
     private Test testtt;
@@ -39,6 +42,7 @@ public class UserController {
         System.out.println(this.testtt.getSs());
         resultMap.put("user",userService.getById("123"));
         resultMap.put("bank",bankService.getById(id));
+        resultMap.put("yfqUser",yfqUserService.getById(id));
         return resultMap;
     }
     @RequestMapping("/test2")
