@@ -3,6 +3,8 @@ package com.quinn.app.controller;
 import com.quinn.app.Test;
 import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
+import com.quinn.common.RedisConfig;
+import com.quinn.common.RedisUtil;
 import com.quinn.payment.model.entity.Bank;
 import com.quinn.payment.service.BankService;
 import com.quinn.yfq.service.UserInfService;
@@ -40,15 +42,23 @@ public class UserController {
 
     @Autowired
     private com.quinn.yfq.service.UserService yfqUserService;
-//
+
     @Autowired
-    private Test testtt;
+    private Test test;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private RedisConfig redisConfig;
 
     @RequestMapping("/test")
     @ResponseBody
     public Map<String,Object> test(String id){
+        redisUtil.set("sss",id);
         Map<String,Object> resultMap = new HashMap();
-        System.out.println(this.testtt.getSs());
+        System.out.println(this.test.getSs());
+        System.out.println(this.redisConfig.getHost());
         User user = userService.getById("123");
         this.userService.updateTest(user);
         resultMap.put("user",user);
