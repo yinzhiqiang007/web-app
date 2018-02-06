@@ -6,7 +6,7 @@ spring:
   thymeleaf:
     mode: LEGACYHTML5
   config:
-    location: config/dev,config/test,config/prod
+    location: config
 #  profiles:
 #    active: config/${env}
 #  mvc:

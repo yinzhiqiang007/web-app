@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @package com.quinn.app
  */
 //@ConfigurationProperties
-@PropertySource("classpath:config/jdbc.properties")
+@PropertySource("classpath:config/dev/jdbc.properties")
 @Component
 public class Test {
 
