@@ -64,7 +64,6 @@ public class UserController {
         systemConfigRedisService.put("hehehehe","ttttt",20000);
         Map<String,Object> resultMap = new HashMap();
         System.out.println(this.test.getSs());
-        System.out.println(this.redisConfig.getHost());
         User user = userService.getById("123");
         this.userService.updateTest(user);
         resultMap.put("user",user);

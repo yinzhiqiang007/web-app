@@ -47,23 +47,6 @@ public class RedisConfig {
     private int minIdle;
 
 
-    @Bean(name= "jedis.pool")
-    @Autowired
-    public JedisPool jedisPool(@Qualifier("jedis.pool.config") JedisPoolConfig config) {
-//        return new JedisPool(config, host, port,timeout,password,database);
-        return new JedisPool(config, host, port);
-    }
-
-    @Bean(name= "jedis.pool.config")
-    public JedisPoolConfig jedisPoolConfig () {
-        JedisPoolConfig config = new JedisPoolConfig();
-        config.setMaxTotal(10);
-        config.setMaxIdle(maxIdle);
-        config.setMaxWaitMillis(timeout);
-        return config;
-    }
-
-
 
     @Bean(name = "redisConnectionFactory")
     public RedisConnectionFactory getRedisConnectionFactory(){
@@ -154,59 +137,5 @@ public class RedisConfig {
     }
 
 
-    public String getHost() {
-        return host;
-    }
 
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public int getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(int timeout) {
-        this.timeout = timeout;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getDatabase() {
-        return database;
-    }
-
-    public void setDatabase(int database) {
-        this.database = database;
-    }
-
-    public int getMaxIdle() {
-        return maxIdle;
-    }
-
-    public void setMaxIdle(int maxIdle) {
-        this.maxIdle = maxIdle;
-    }
-
-    public int getMinIdle() {
-        return minIdle;
-    }
-
-    public void setMinIdle(int minIdle) {
-        this.minIdle = minIdle;
-    }
 }
