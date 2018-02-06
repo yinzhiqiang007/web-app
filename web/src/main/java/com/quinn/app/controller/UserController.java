@@ -3,6 +3,7 @@ package com.quinn.app.controller;
 import com.quinn.app.Test;
 import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
+import com.quinn.common.IRedisService;
 import com.quinn.common.RedisConfig;
 import com.quinn.common.RedisUtil;
 import com.quinn.payment.model.entity.Bank;
@@ -52,10 +53,15 @@ public class UserController {
     @Autowired
     private RedisConfig redisConfig;
 
+    @Autowired
+    private IRedisService systemConfigRedisService;
+
     @RequestMapping("/test")
     @ResponseBody
     public Map<String,Object> test(String id){
         redisUtil.set("sss",id);
+        systemConfigRedisService.setNX("dddd","sd水电费水电费");
+        systemConfigRedisService.put("hehehehe","ttttt",20000);
         Map<String,Object> resultMap = new HashMap();
         System.out.println(this.test.getSs());
         System.out.println(this.redisConfig.getHost());
