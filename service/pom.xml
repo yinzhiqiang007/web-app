@@ -18,6 +18,16 @@
             <groupId>com.quinn.app</groupId>
             <artifactId>dao</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </dependency>
+
     </dependencies>
 
 

@@ -1,4 +1,4 @@
-package com.quinn.common;
+package com.quinn.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
