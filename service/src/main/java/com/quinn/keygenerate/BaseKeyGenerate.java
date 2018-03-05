@@ -12,7 +12,7 @@ import java.util.Calendar;
 public class BaseKeyGenerate implements KeyGenerate {
     @Override
     public String generateStringKey(KeyGenerateEnum em) {
-        return CommonUtil.getUUIDString();
+        return em.name()+generateLongKey(em);
     }
 
     @Override

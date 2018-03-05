@@ -1,12 +1,8 @@
 package com.quinn.keygenerate;
 
-import com.alibaba.druid.util.StringUtils;
 import com.quinn.redis.IRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author Quinn
@@ -31,7 +27,7 @@ public class RedisKeyGenerate extends BaseKeyGenerate {
 
     @Override
     public Long generateLongKey(KeyGenerateEnum em) {
-        Long id =  systemConfigRedisService.getKey(em);
-        return id;
+        return systemConfigRedisService.getKey(em);
+
     }
 }
