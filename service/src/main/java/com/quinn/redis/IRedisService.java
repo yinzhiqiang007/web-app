@@ -70,7 +70,7 @@ public abstract class IRedisService<T> {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String d = format.format(new Date());
         long seq = hashOperations.increment(KeyGenerate.keys, em.name() + d, 1l);
-        redisTemplate.expire(KeyGenerate.keys, 20, TimeUnit.SECONDS);
+        redisTemplate.expire(KeyGenerate.keys, 1, TimeUnit.SECONDS);
         long id = Long.parseLong(d + (diff + seq));
         return id - diff;
     }
