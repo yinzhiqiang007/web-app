@@ -1,10 +1,15 @@
 package com.quinn.redis;
 
+import com.quinn.app.common.util.CommonUtil;
+import com.quinn.keygenerate.KeyGenerate;
+import com.quinn.keygenerate.KeyGenerateEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2018/2/6
  * @package com.quinn.common
  */
-public abstract  class IRedisService<T> {
+public abstract class IRedisService<T> {
 
     @Autowired
     protected RedisTemplate<String, Object> redisTemplate;
@@ -45,13 +50,31 @@ public abstract  class IRedisService<T> {
     /**
      * 封装和jedis方法
      * 可用于分布式锁
+     *
      * @param key
      * @param value
      * @return
      */
     public boolean setNX(final String key, final String value) {
-        return redisTemplate.opsForValue().setIfAbsent(key,value);
+        return redisTemplate.opsForValue().setIfAbsent(key, value);
     }
+
+    /**
+     * 获取自增id
+     *
+     * @param em
+     * @return
+     */
+    public long getKey(KeyGenerateEnum em) {
+        int diff = 1000;
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        String d = format.format(new Date());
+        long seq = hashOperations.increment(KeyGenerate.keys, em.name() + d, 1l);
+        redisTemplate.expire(KeyGenerate.keys, 20, TimeUnit.SECONDS);
+        long id = Long.parseLong(d + (diff + seq));
+        return id - diff;
+    }
+
 
     /**
      * 删除

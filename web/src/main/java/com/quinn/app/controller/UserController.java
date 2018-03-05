@@ -3,6 +3,8 @@ package com.quinn.app.controller;
 import com.quinn.app.Test;
 import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
+import com.quinn.keygenerate.KeyGenerate;
+import com.quinn.keygenerate.KeyGenerateEnum;
 import com.quinn.redis.IRedisService;
 import com.quinn.redis.RedisConfig;
 import com.quinn.redis.RedisUtil;
@@ -55,6 +57,9 @@ public class UserController {
     @Autowired
     private IRedisService systemConfigRedisService;
 
+    @Autowired
+    private KeyGenerate redisKeyGenerate;
+
     @RequestMapping("/test")
     @ResponseBody
     public Map<String,Object> test(String id){
@@ -77,6 +82,13 @@ public class UserController {
     public Object test2(String id){
         Object o = bankService.getList();
         return o;
+    }
+    @RequestMapping("/test3")
+    @ResponseBody
+    public Object test3(){
+        String p = redisKeyGenerate.generateStringKey(KeyGenerateEnum.P);
+        String u = redisKeyGenerate.generateStringKey(KeyGenerateEnum.U);
+        return p;
     }
 
     @RequestMapping("/user")
