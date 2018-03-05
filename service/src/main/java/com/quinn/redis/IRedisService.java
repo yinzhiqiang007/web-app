@@ -71,8 +71,7 @@ public abstract class IRedisService<T> {
      */
     public long getKey(KeyGenerateEnum em) {
         int diff = 1000;
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        String d = format.format(new Date());
+        String d = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         long seq = hashOperations.increment(KeyGenerate.keys + d, em.name(), 1l);
         redisTemplate.expire(KeyGenerate.keys + d, 1, TimeUnit.SECONDS);
         long id = Long.parseLong(d + (diff + seq));

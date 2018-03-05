@@ -87,8 +87,11 @@ public class UserController {
     @ResponseBody
     public Object test3(){
         String p = redisKeyGenerate.generateStringKey(KeyGenerateEnum.P);
-        String u = redisKeyGenerate.generateStringKey(KeyGenerateEnum.U);
-        return p;
+        String c = redisKeyGenerate.generateStringKey(KeyGenerateEnum.C);
+        Map<String,String> result = new HashMap<String,String>();
+        result.put("p",p);
+        result.put("c",c);
+        return result;
     }
 
     @RequestMapping("/user")
