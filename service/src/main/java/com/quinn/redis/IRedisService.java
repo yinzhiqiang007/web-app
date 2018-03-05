@@ -34,6 +34,11 @@ public abstract class IRedisService<T> {
     protected abstract String getRedisKey();
 
     /**
+     * 初始化系统
+     */
+    protected abstract void init();
+
+    /**
      * 添加
      *
      * @param key    key

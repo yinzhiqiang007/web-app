@@ -1,6 +1,10 @@
 package com.quinn.redis;
 
+import com.quinn.keygenerate.KeyGenerate;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Quinn
@@ -13,8 +17,15 @@ public class SystemConfigRedisServiceImpl extends  IRedisService<Object> {
 
     private static final String REDIS_KEY = "SYSTEM_CONFIG_REDIS_KEY";
 
+    @PostConstruct
+    @Override
+    public void init(){
+        System.out.println("SystemConfigRedisServiceImpl.............");
+    }
+
     @Override
     protected String getRedisKey() {
         return this.REDIS_KEY;
     }
+
 }
