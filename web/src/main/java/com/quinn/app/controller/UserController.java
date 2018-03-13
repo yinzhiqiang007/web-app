@@ -65,7 +65,7 @@ public class UserController {
     public Map<String,Object> test(String id){
         redisUtil.set("sss",id);
         systemConfigRedisService.setNX("dddd","sd水电费水电费");
-        systemConfigRedisService.put("hehehehe","ttttt",20000);
+        systemConfigRedisService.put("hehehehe","ttttt",200);
         Map<String,Object> resultMap = new HashMap();
         System.out.println(this.test.getSs());
         User user = userService.getById("123");
