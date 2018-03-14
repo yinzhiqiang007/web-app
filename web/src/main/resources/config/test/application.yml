@@ -1,0 +1,26 @@
+server:
+  context-path: /boot
+  port: 8080
+
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+  config:
+    location: config
+#  profiles:
+#    active: config/${env}
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/view/
+#      suffix: .jsp
+
+
+#logging:
+#  level:
+#    org:
+#      springframework: WARN
+#      springboot:
+#        dao: DEBUG
+#    com:
+#      myjsp: debug
+#  file: D:/logs/spring-boot-logging.log

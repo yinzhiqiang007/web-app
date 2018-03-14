@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2018/1/25
  * @package com.quinn.app.config
  */
-@ConfigurationProperties(prefix = "jdbc.database", locations = "classpath:config/*/jdbc.properties")
+@ConfigurationProperties(prefix = "jdbc.database", locations = "classpath:jdbc.properties")
 public class Jdbc {
     private String url;
     private String username;
