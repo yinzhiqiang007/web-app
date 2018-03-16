@@ -16,6 +16,12 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages={"com.quinn"})
 public class Application extends SpringBootServletInitializer {
+
+    /**
+     * 将spring boot配置信息build到容器
+     * @param application
+     * @return
+     */
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         System.out.println("test1");
