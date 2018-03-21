@@ -10,7 +10,7 @@ import com.quinn.app.common.constans.BaseEnum;
 /**
  * 判断工具包
  *
- * @author DIY
+ * @author Quinn
  */
 public class CommonUtil {
 

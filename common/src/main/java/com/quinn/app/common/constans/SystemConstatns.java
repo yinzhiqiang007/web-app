@@ -1,9 +1,9 @@
 package com.quinn.app.common.constans;
 
 /**
- * @author DIY
- * @date 2017/10/24
- * @package com.qrjr.pay.constants
+ * @author Quinn
+ * @date 2018/02/24
+ * @package com.quinn.app.common.constans
  */
 public class SystemConstatns {
 
