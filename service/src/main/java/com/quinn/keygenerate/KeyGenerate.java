@@ -21,4 +21,10 @@ public interface KeyGenerate {
      * @return
      */
     public Long generateLongKey(KeyGenerateEnum em);
+
+    /**
+     * Demo - id
+     * @return
+     */
+    public Long getCaseId();
 }

@@ -7,7 +7,6 @@ import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
 import com.quinn.redis.IRedisService;
 import com.quinn.redis.RedisConfig;
-import com.quinn.redis.RedisUtil;
 import com.quinn.payment.service.BankService;
 import com.quinn.yfq.service.UserInfService;
 import org.slf4j.Logger;
@@ -49,9 +48,6 @@ public class UserController {
     private Test test;
 
     @Autowired
-    private RedisUtil redisUtil;
-
-    @Autowired
     private RedisConfig redisConfig;
 
     @Autowired
@@ -63,7 +59,6 @@ public class UserController {
     @RequestMapping("/test")
     @ResponseBody
     public Map<String,Object> test(String id){
-        redisUtil.set("sss",id);
         systemConfigRedisService.setNX("dddd","sd水电费水电费");
         systemConfigRedisService.put("hehehehe","ttttt",200);
         Map<String,Object> resultMap = new HashMap();

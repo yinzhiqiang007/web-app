@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Quinn
  * @date 2018/2/6
- * @package com.quinn.common
+ * @package com.qiaorong.common
  */
 public abstract class IRedisService<T> {
 
@@ -70,12 +70,27 @@ public abstract class IRedisService<T> {
      * @return
      */
     public long getKey(KeyGenerateEnum em) {
-        int diff = 1000;
+        int diff = 10000;
         String d = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         long seq = hashOperations.increment(KeyGenerate.keys + d, em.name(), 1l);
         redisTemplate.expire(KeyGenerate.keys + d, 1, TimeUnit.SECONDS);
         long id = Long.parseLong(d + (diff + seq));
         return id - diff;
+    }
+
+    /**
+     * 获取自增id
+     * expire 过期时间（秒），当过期时间小于1秒时持久化到redis
+     * key 存储地址，可以为null
+     * @param em
+     * @return
+     */
+    public long getKey(KeyGenerateEnum em, String key, long expire) {
+        long seq = hashOperations.increment(KeyGenerate.keys, em.name() + key, 1l);
+        if (expire > 0) {
+            redisTemplate.expire(KeyGenerate.keys, expire, TimeUnit.SECONDS);
+        }
+        return seq;
     }
 
 

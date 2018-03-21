@@ -9,7 +9,7 @@ import java.util.Calendar;
  * @date 2018/3/2
  * @package com.quinn.keygenerate
  */
-public class BaseKeyGenerate implements KeyGenerate {
+public abstract class BaseKeyGenerate implements KeyGenerate {
     @Override
     public String generateStringKey(KeyGenerateEnum em) {
         return em.name()+generateLongKey(em);

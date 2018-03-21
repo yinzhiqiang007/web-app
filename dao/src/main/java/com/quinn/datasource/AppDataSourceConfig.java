@@ -55,11 +55,13 @@ public class AppDataSourceConfig {
     }
 
     @Bean(name = "appTransactionManager")
+    @Primary
     public DataSourceTransactionManager masterTransactionManager() {
         return new DataSourceTransactionManager(appDataSource());
     }
 
     @Bean(name = "appSqlSessionFactory")
+    @Primary
     public SqlSessionFactory masterSqlSessionFactory(@Qualifier("appDataSource") DataSource masterDataSource)
             throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();

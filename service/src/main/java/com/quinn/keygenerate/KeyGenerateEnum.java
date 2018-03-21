@@ -6,7 +6,7 @@ package com.quinn.keygenerate;
  * @package com.quinn.keygenerate
  */
 public enum KeyGenerateEnum {
-    C("信审单id"),U("用户id"),P("支付单号");
+    CS("催收单id"),C("信审单id"),U("用户id"),P("支付单号");
 
     private String message;
 
