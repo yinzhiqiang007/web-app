@@ -1,6 +1,6 @@
 package com.quinn.app.controller;
 
-import com.quinn.app.Test;
+import com.quinn.app.config.Test;
 import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
 import com.quinn.keygenerate.KeyGenerate;

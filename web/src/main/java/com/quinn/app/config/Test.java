@@ -1,4 +1,4 @@
-package com.quinn.app;
+package com.quinn.app.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

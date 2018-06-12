@@ -1,8 +1,7 @@
 package com.quinn.app;
 
-import com.quinn.hanlder.StringToDateConverter;
+import com.quinn.app.handler.StringToDateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
