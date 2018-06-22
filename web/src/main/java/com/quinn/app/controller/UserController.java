@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * @author Quinn
- * @date 2018/1/18
+ * @date 2018/1/18 test
  * @package com.quinn.app.controller
  */
 @Controller
@@ -99,5 +99,9 @@ public class UserController {
         model.put("page", "page");
         request.setAttribute("page", "page");
         return "page";
+    }
+
+    public static void main(String[] args) {
+
     }
 }
