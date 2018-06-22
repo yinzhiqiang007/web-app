@@ -100,4 +100,8 @@ public class UserController {
         request.setAttribute("page", "page");
         return "page";
     }
+
+    public static void main(String[] args) {
+
+    }
 }
