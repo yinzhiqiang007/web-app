@@ -5,10 +5,9 @@ import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
 import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
+import com.quinn.payment.service.BankService;
 import com.quinn.redis.IRedisService;
 import com.quinn.redis.RedisConfig;
-import com.quinn.payment.service.BankService;
-import com.quinn.yfq.service.UserInfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +37,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserInfService userInfService;
-
-    @Autowired
-    private com.quinn.yfq.service.UserService yfqUserService;
 
     @Autowired
     private Test test;
@@ -66,9 +60,7 @@ public class UserController {
         User user = userService.getById("123");
         this.userService.updateTest(user);
         resultMap.put("user",user);
-        resultMap.put("userInf", userInfService.getById("8771a3a222924292b3d1a525c19d14af"));
         resultMap.put("bank",bankService.getById(id));
-        resultMap.put("yfqUser",yfqUserService.getById(id));
         logger.info("web_app test.....");
         return resultMap;
     }
