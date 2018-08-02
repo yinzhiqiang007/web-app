@@ -48,6 +48,7 @@ public class RedisConfig {
     @Bean(name = "redisConnectionFactory")
     public RedisConnectionFactory getRedisConnectionFactory(){
         JedisShardInfo JedisShardInfo  = new JedisShardInfo(host,port,timeout,timeout, Sharded.DEFAULT_WEIGHT);
+        JedisShardInfo.setPassword(password);
         RedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory(JedisShardInfo);
         return redisConnectionFactory;
     }
