@@ -56,6 +56,7 @@ public class UserController {
         System.out.println("1111");
         System.out.println("2222");
         System.out.println("3333");
+        System.out.println("4444");
         systemConfigRedisService.setNX("dddd","sd水电费水电费");
         systemConfigRedisService.put("hehehehe","ttttt",200);
         Map<String,Object> resultMap = new HashMap();
