@@ -54,6 +54,7 @@ public class UserController {
     @ResponseBody
     public Map<String,Object> test(String id){
         System.out.println("1111");
+        System.out.println("2222");
         systemConfigRedisService.setNX("dddd","sd水电费水电费");
         systemConfigRedisService.put("hehehehe","ttttt",200);
         Map<String,Object> resultMap = new HashMap();
