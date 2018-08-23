@@ -1,5 +1,6 @@
 package com.quinn.app.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.quinn.app.config.Test;
 import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
@@ -8,6 +9,8 @@ import com.quinn.keygenerate.KeyGenerateEnum;
 import com.quinn.payment.service.BankService;
 import com.quinn.redis.IRedisService;
 import com.quinn.redis.RedisConfig;
+import com.quinn.util.ThreadPoolUtil;
+import com.quinn.util.UserCallabe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author Quinn
@@ -97,7 +102,15 @@ public class UserController {
         return "page";
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws InterruptedException {
+        CountDownLatch cc = new CountDownLatch(1);
+        User u = new User();
+        u.setGender(1);
+        u.setMobile("15216884688");
+        Callable c = new UserCallabe(u,cc);
+        ThreadPoolUtil.threadPool.submit(c);
+        cc.await();
+        System.out.println(JSON.toJSONString(u)+"main");
+        ThreadPoolUtil.threadPool.shutdown();
     }
 }
