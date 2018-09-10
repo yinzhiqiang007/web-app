@@ -17,9 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -100,6 +104,13 @@ public class UserController {
         model.put("page", "page");
         request.setAttribute("page", "page");
         return "page";
+    }
+
+    @RequestMapping("/face")
+    @ResponseBody
+    public Object face(@RequestParam("file") MultipartFile file) throws IOException {
+        String s = FaceTest.getFace(file.getInputStream());
+        return s;
     }
 
     public static void main(String[] args) throws InterruptedException {
