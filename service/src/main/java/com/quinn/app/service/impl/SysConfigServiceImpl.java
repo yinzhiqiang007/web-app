@@ -1,5 +1,7 @@
 package com.quinn.app.service.impl;
 
+import com.quinn.app.common.util.CommonUtil;
+import com.quinn.app.common.util.RestResult;
 import com.quinn.app.model.entity.SysConfig;
 import com.quinn.app.service.SysConfigService;
 import com.quinn.redis.IRedisService;
@@ -35,5 +37,17 @@ public class SysConfigServiceImpl extends BaseServiceImpl<SysConfigDao> implemen
             }
         }
 
+    }
+
+    @Override
+    public RestResult updateByCode(SysConfig sysConfig) {
+        List<SysConfig> list = this.sysConfigDao.listByEntity(sysConfig);
+        if(CommonUtil.isNotEmptyList(list)){
+            sysConfig.setId(list.get(0).getId());
+            sysConfig.setValue(list.get(0).getValue());
+            this.sysConfigDao.updateByIdSelective(sysConfig);
+            this.dbCacheRedisService.put(sysConfig.getCode(),sysConfig.getValue(),-1);
+        }
+        return null;
     }
 }
