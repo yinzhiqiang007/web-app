@@ -19,7 +19,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao> implements UserSer
 
     @Override
     public int updateTest(User user) {
-        System.out.println(11111111);
         return this.userDao.updateTest(user);
     }
 }

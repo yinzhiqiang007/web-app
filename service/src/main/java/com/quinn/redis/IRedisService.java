@@ -1,16 +1,18 @@
 package com.quinn.redis;
 
+import com.quinn.app.common.util.CommonUtil;
 import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import redis.clients.jedis.JedisCommands;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,6 +26,9 @@ public abstract class IRedisService<T> {
     protected RedisTemplate<String, Object> redisTemplate;
     @Resource
     protected HashOperations<String, String, T> hashOperations;
+
+    @Resource
+    protected ValueOperations<String, String> valueOperations;
 
     /**
      * 存入redis中的key
@@ -41,14 +46,61 @@ public abstract class IRedisService<T> {
      * 添加
      *
      * @param key    key
-     * @param doamin 对象
+     * @param value  对象
      * @param expire 过期时间(单位:秒),传入 -1 时表示不设置过期时间
      */
-    public void put(String key, T doamin, long expire) {
-        hashOperations.put(getRedisKey(), key, doamin);
+    public void put(String key, T value, long expire) {
+        hashOperations.put(getRedisKey(), key, value);
         if (expire != -1) {
             redisTemplate.expire(getRedisKey(), expire, TimeUnit.SECONDS);
         }
+    }
+
+    /**
+     * 添加map
+     *
+     * @param key    key
+     * @param value  对象
+     * @param expire 过期时间(单位:秒),传入 -1 时表示不设置过期时间
+     */
+    public void putAll(String key, Map<String, T> value, long expire) {
+        hashOperations.putAll(key, value);
+        if (expire != -1) {
+            redisTemplate.expire(getRedisKey(), expire, TimeUnit.SECONDS);
+        }
+    }
+
+    /**
+     * 添加
+     *
+     * @param key    key
+     * @param value  对象
+     * @param expire 过期时间(单位:秒),传入 -1 时表示不设置过期时间
+     */
+    public void setStr(String key, String value, long expire) {
+        if (expire <= 0) {
+            valueOperations.set(key, value);
+        } else {
+            valueOperations.set(key, value, expire, TimeUnit.SECONDS);
+        }
+    }
+
+    /**
+     * 添加
+     *
+     * @param key key
+     */
+    public String getStr(String key) {
+        return valueOperations.get(key);
+    }
+
+    /**
+     * 删除
+     *
+     * @param key key
+     */
+    public void removeStr(String key) {
+        redisTemplate.delete(key);
     }
 
     /**
@@ -56,11 +108,18 @@ public abstract class IRedisService<T> {
      * 可用于分布式锁
      *
      * @param key
-     * @param value
+     * @param expire 毫秒
      * @return
      */
-    public boolean setNX(final String key, final String value) {
-        return redisTemplate.opsForValue().setIfAbsent(key, value);
+    public boolean setNX(final String key, long expire) {
+        RedisCallback<String> callback = (connection) -> {
+            JedisCommands commands = (JedisCommands) connection.getNativeConnection();
+            String uuid = UUID.randomUUID().toString();
+            return commands.set(key, uuid, "NX", "PX", expire);
+        };
+        String result = redisTemplate.execute(callback);
+        return CommonUtil.isNotStrBlank(result);
+
     }
 
     /**
@@ -82,6 +141,7 @@ public abstract class IRedisService<T> {
      * 获取自增id
      * expire 过期时间（秒），当过期时间小于1秒时持久化到redis
      * key 存储地址，可以为null
+     *
      * @param em
      * @return
      */

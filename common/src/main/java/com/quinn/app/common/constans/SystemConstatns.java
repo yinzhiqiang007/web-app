@@ -7,6 +7,8 @@ package com.quinn.app.common.constans;
  */
 public class SystemConstatns {
 
+    /** 地区数据-中国-100000 **/
+    public final static String SYS_AREA_CHINA_CODE = "100000";
 
     public final static String RESULT_SUCCESS = "SUCCESS";
     /*** 交易失败 */

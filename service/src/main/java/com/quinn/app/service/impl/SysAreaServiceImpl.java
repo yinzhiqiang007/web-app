@@ -1,10 +1,13 @@
 package com.quinn.app.service.impl;
 
+import com.quinn.app.model.entity.SysArea;
 import com.quinn.app.service.SysAreaService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.quinn.app.dao.SysAreaDao;
 import com.quinn.BaseServiceImpl;
+
+import java.util.List;
 
 /**
  * @author Quinn
@@ -15,4 +18,11 @@ public class SysAreaServiceImpl extends BaseServiceImpl<SysAreaDao> implements S
 
     @Autowired
     private SysAreaDao sysAreaDao;
+
+    @Override
+    public List<SysArea> listByParentCode(String parentCode) {
+        SysArea sysArea = new SysArea();
+        sysArea.setParentCode(parentCode);
+        return this.sysAreaDao.listByEntity(sysArea);
+    }
 }

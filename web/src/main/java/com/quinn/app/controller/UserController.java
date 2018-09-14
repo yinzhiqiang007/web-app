@@ -1,8 +1,10 @@
 package com.quinn.app.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.quinn.app.common.constans.SystemConstatns;
 import com.quinn.app.config.Test;
 import com.quinn.app.model.entity.User;
+import com.quinn.app.service.SysAreaService;
 import com.quinn.app.service.UserService;
 import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
@@ -50,14 +52,18 @@ public class UserController {
     @Autowired
     private Test test;
 
-    @Autowired
-    private RedisConfig redisConfig;
 
     @Autowired
     private IRedisService systemConfigRedisService;
 
     @Autowired
+    private IRedisService dbCacheRedisService;
+
+    @Autowired
     private KeyGenerate redisKeyGenerate;
+
+    @Autowired
+    private SysAreaService sysAreaService;
 
     @RequestMapping("/test")
     @ResponseBody
@@ -66,7 +72,7 @@ public class UserController {
         System.out.println("2222");
         System.out.println("3333");
         System.out.println("4444");
-        systemConfigRedisService.setNX("dddd","sd水电费水电费");
+        systemConfigRedisService.setNX("dddd",20000);
         systemConfigRedisService.put("hehehehe","ttttt",200);
         Map<String,Object> resultMap = new HashMap();
         System.out.println(this.test.getSs());
@@ -80,7 +86,9 @@ public class UserController {
     @RequestMapping("/test2")
     @ResponseBody
     public Object test2(String id){
-        Object o = bankService.getList();
+//        Object o = bankService.getList();
+        Object o = this.sysAreaService.listByParentCode(SystemConstatns.SYS_AREA_CHINA_CODE);
+
         return o;
     }
     @RequestMapping("/test3")
@@ -96,6 +104,7 @@ public class UserController {
 
     @RequestMapping("/user")
     public String user(){
+        this.dbCacheRedisService.removeStr("dddddddd");
         return "user/user";
     }
 

@@ -2,6 +2,8 @@ package com.quinn.app.model.entity;
 
 
 import com.quinn.Base;
+
+import java.io.Serializable;
 import java.util.*;
 import java.math.BigDecimal;
 
@@ -9,7 +11,7 @@ import java.math.BigDecimal;
  * @author Quinn
  * @date 2018/09/14
  */
-public class SysConfig extends Base {
+public class SysConfig extends Base implements Serializable {
 
 
         private Long id;
