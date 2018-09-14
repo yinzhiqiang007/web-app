@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quinn.app.dao.SysConfigDao">
+
+
+    <resultMap id="BaseResultMap" type="com.quinn.app.model.entity.SysConfig" >
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="value" property="value" jdbcType="VARCHAR" />
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List" >
+    id,code,name,value,create_user_id,create_time
+    </sql>
+
+
+    <select id="getById" resultMap="BaseResultMap">
+        select * from tb_sys_config where
+        id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.quinn.app.model.entity.SysConfig" >
+        insert into tb_sys_config (
+          <include refid="Base_Column_List" />
+        )
+        values (
+        #{id},#{code},#{name},#{value},#{createUserId},#{createTime}
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.quinn.app.model.entity.SysConfig" >
+      update tb_sys_config
+      <set>
+        id = #{id} ,
+        code = #{code} ,
+        name = #{name} ,
+        value = #{value} ,
+        create_user_id = #{createUserId} ,
+        create_time = #{createTime} 
+      </set>
+      where id = #{id}
+    </update>
+
+    <update id="updateByIdSelective" parameterType="com.quinn.app.model.entity.SysConfig" >
+    update tb_sys_config
+    <set>
+        <if test="id != null" >
+        id = #{id} ,
+        </if>
+        <if test="code != null" >
+        code = #{code} ,
+        </if>
+        <if test="name != null" >
+        name = #{name} ,
+        </if>
+        <if test="value != null" >
+        value = #{value} ,
+        </if>
+        <if test="createUserId != null" >
+        create_user_id = #{createUserId} ,
+        </if>
+        <if test="createTime != null" >
+        create_time = #{createTime} 
+        </if>
+    </set>
+        where id = #{id}
+    </update>
+
+    <select id="listByEntity"  resultMap="BaseResultMap" >
+      select <include refid="Base_Column_List" /> from  tb_sys_config
+        <where>
+            <if test="id != null" >
+                AND id = #{id}
+            </if>
+
+            <if test="code != null and code != '' ">
+                AND code = #{code}
+            </if>
+            <if test="name != null and name != '' ">
+                AND name = #{name}
+            </if>
+            <if test="value != null and value != '' ">
+                AND value = #{value}
+            </if>
+            <if test="createUserId != null and createUserId != '' ">
+                AND create_user_id = #{createUserId}
+            </if>
+            <if test="createTime != null" >
+                AND create_time = #{createTime}
+            </if>
+
+        </where>
+    </select>
+
+
+
+
+</mapper>

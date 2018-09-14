@@ -99,6 +99,11 @@ public class UserController {
         return "user/user";
     }
 
+    @RequestMapping("/facePage")
+    public String facePage(){
+        return "face-demo";
+    }
+
     @RequestMapping("page")
     public String page(HttpServletRequest request, ModelMap model){
         model.put("page", "page");
