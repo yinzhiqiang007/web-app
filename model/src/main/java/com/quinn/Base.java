@@ -8,8 +8,8 @@ package com.quinn;
 public class Base {
 
     //已知数据
-    private int pageNum = 1;    //当前页,从请求那边传过来。
-    private int pageSize = 10;    //每页显示的数据条数。
+    private int pageNum;    //当前页,从请求那边传过来。
+    private int pageSize;    //每页显示的数据条数。
 
     public int getPageNum() {
         return pageNum;

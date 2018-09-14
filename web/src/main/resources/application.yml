@@ -1,6 +1,6 @@
 server:
   context-path: /quinn
-  port: 80
+  port: 8081
 
 spring:
   jackson:
@@ -21,7 +21,7 @@ spring:
 
 pagehelper:
   helperDialect: mysql
-  reasonable: true
+  reasonable: false
   supportMethodsArguments: true
   params: count=countSql
 
