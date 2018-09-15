@@ -20,6 +20,11 @@ public class RestResult {
     private Object data;
     private Object param;
 
+    public RestResult(String code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public RestResult(String code, String message, Object data) {
         this.code = code;
         this.message = message;
