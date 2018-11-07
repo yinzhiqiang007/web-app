@@ -16,7 +16,20 @@ spring:
         name: qiaorong-api-manager
         registries[0]:
           address: zookeeper://127.0.0.1:2181
-
+  data:
+    mongodb:
+      primary:
+        host: 127.0.0.1
+        port: 27017
+        database: iot
+        username: iot
+        password: 123
+      secondary:
+        host: 127.0.0.1
+        port: 27017
+        database: iot
+        username: iot
+        password: 123
 
 
 pagehelper:

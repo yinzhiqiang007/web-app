@@ -1,4 +1,4 @@
-package com.quinn.datasource;
+package com.quinn.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -8,43 +8,44 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-
 /**
  * @author Quinn
  * @date 2018/1/18
  * @EnableTransactionManagement 支持开启事物
- * @package com.quinn.payment.datasource
+ * @package com.quinn.app.datasource
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = PaymentDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "paymentSqlSessionFactory")
-public class PaymentDataSourceConfig {
+@MapperScan(basePackages = AppDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "appSqlSessionFactory")
+public class AppDataSourceConfig {
 
     // 精确到 master 目录，以便跟其他数据源隔离
-    static final String PACKAGE = "com.quinn.payment.dao";
-    static final String MAPPER_LOCATION = "classpath*:mapper/payment/*.xml";
+    static final String PACKAGE = "com.quinn.app.dao";
+    static final String MAPPER_LOCATION = "classpath*:mapper/app/*.xml";
 
 
-    @Value("${payment.datasource.url}")
+    @Value("${app.datasource.url}")
     private String url;
 
-    @Value("${payment.datasource.username}")
+    @Value("${app.datasource.username}")
     private String user;
 
-    @Value("${payment.datasource.password}")
+    @Value("${app.datasource.password}")
     private String password;
 
-    @Value("${payment.datasource.driver}")
+    @Value("${app.datasource.driver}")
     private String driverClass;
 
-    @Bean(name = "paymentDataSource")
-    public DataSource paymentDataSource() {
+    @Bean(name = "appDataSource")
+    @Primary
+    public DataSource appDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(url);
@@ -53,23 +54,24 @@ public class PaymentDataSourceConfig {
         return dataSource;
     }
 
-    @Bean(name = "paymentTransactionManager")
-    public DataSourceTransactionManager paymentTransactionManager() {
-        return new DataSourceTransactionManager(paymentDataSource());
+    @Bean(name = "appTransactionManager")
+    @Primary
+    public DataSourceTransactionManager masterTransactionManager() {
+        return new DataSourceTransactionManager(appDataSource());
     }
 
-    @Bean(name = "paymentSqlSessionFactory")
-    public SqlSessionFactory paymentSqlSessionFactory(@Qualifier("paymentDataSource") DataSource masterDataSource)
+    @Bean(name = "appSqlSessionFactory")
+    @Primary
+    public SqlSessionFactory masterSqlSessionFactory(@Qualifier("appDataSource") DataSource masterDataSource)
             throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(masterDataSource);
-        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(PaymentDataSourceConfig.MAPPER_LOCATION));
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(AppDataSourceConfig.MAPPER_LOCATION));
         return sessionFactory.getObject();
     }
 
-
     /**
-     * 有多少个从库就要配置多少个 paymentlication.properties 方式
+     * 有多少个从库就要配置多少个 application.properties 方式
      * @return
      */
 //    @Bean(name = "readDataSource")

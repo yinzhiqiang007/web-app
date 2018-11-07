@@ -132,10 +132,12 @@ public class UserController {
         User u = new User();
         u.setGender(1);
         u.setMobile("15216884688");
-        Callable c = new UserCallabe(u,cc);
+        String sss= "init";
+        Callable c = new UserCallabe(u,cc,sss);
         ThreadPoolUtil.threadPool.submit(c);
         cc.await();
         System.out.println(JSON.toJSONString(u)+"main");
+        System.out.println("sss main:"+sss);
         ThreadPoolUtil.threadPool.shutdown();
     }
 }
