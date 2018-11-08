@@ -1,6 +1,6 @@
 package com.quinn.redis;
 
-import com.quinn.app.common.util.CommonUtil;
+import com.quinn.app.common.util.CommonUtils;
 import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,7 +118,7 @@ public abstract class IRedisService<T> {
             return commands.set(key, uuid, "NX", "PX", expire);
         };
         String result = redisTemplate.execute(callback);
-        return CommonUtil.isNotStrBlank(result);
+        return CommonUtils.isNotBlank(result);
 
     }
 

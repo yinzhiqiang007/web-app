@@ -12,31 +12,31 @@ import com.quinn.app.common.constans.BaseEnum;
  *
  * @author Quinn
  */
-public class CommonUtil {
+public class CommonUtils {
 
-    public static boolean isStrEmpty(Object value) {
+    public static boolean isEmpty(Object value) {
         if (null == value) {
             return true;
         }
         return false;
     }
 
-    public static boolean isNotStrEmpty(Object value) {
+    public static boolean isNotEmpty(Object value) {
         if (null != value) {
             return true;
         }
         return false;
     }
 
-    public static boolean isStrBlank(Object value) {
+    public static boolean isBlank(Object value) {
         if (null == value || value.toString().trim().equals("")) {
             return true;
         }
         return false;
     }
 
-    public static boolean isNotStrBlank(Object value) {
-        if (isStrBlank(value)) {
+    public static boolean isNotBlank(Object value) {
+        if (isBlank(value)) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class CommonUtil {
      * @return
      */
     public static boolean isMoney(Object value) {
-        if (isStrBlank(value)) {
+        if (isBlank(value)) {
             return false;
         }
         Pattern pattern = Pattern.compile("^[\\-\\+]?(-)?[0-9]+(.[0-9]{1,2})?$"); // 判断小数点后2位的数字的正则表达式
@@ -80,7 +80,7 @@ public class CommonUtil {
     }
 
     public static boolean isBigDecimal(Object value) {
-        if (isStrBlank(value)) {
+        if (isBlank(value)) {
             return false;
         }
         Pattern pattern = Pattern.compile("^[\\-\\+]?(-)?[0-9]+(.[0-9]+)?$"); // 判断小数点后2位的数字的正则表达式
@@ -148,7 +148,7 @@ public class CommonUtil {
         Iterator<Map.Entry<String, Object>> it = map.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, Object> entry = it.next();
-            if (CommonUtil.isStrBlank(map.get(entry.getKey()))) {
+            if (CommonUtils.isBlank(map.get(entry.getKey()))) {
                 it.remove();
             }
         }

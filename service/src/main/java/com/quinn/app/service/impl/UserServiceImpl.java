@@ -2,7 +2,7 @@ package com.quinn.app.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
-import com.quinn.app.common.util.RestResult;
+import com.quinn.app.common.util.ResponseUtils;
 import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
 import org.springframework.stereotype.Service;
@@ -28,12 +28,12 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao> implements UserSer
     }
 
     @Override
-    public RestResult getList(User user) {
+    public ResponseUtils getList(User user) {
         Page result = user.initPage();
         List<User> list = userDao.listByEntity(user);
 
         PageInfo pageInfo = new PageInfo(list);
 
-        return new RestResult("", "", pageInfo);
+        return new ResponseUtils("", "", pageInfo);
     }
 }

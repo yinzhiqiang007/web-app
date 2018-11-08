@@ -1,6 +1,6 @@
 package com.quinn.app.handler;
 
-import com.quinn.app.common.util.CommonUtil;
+import com.quinn.app.common.util.CommonUtils;
 import org.springframework.core.convert.converter.Converter;
 
 import java.text.SimpleDateFormat;
@@ -19,7 +19,7 @@ public class StringToDateConverter implements Converter<String, Date> {
 
     @Override
     public Date convert(String source) {
-        if (CommonUtil.isNullStr(source)) {
+        if (CommonUtils.isNullStr(source)) {
             return null;
         }
         source = source.trim();

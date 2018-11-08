@@ -1,6 +1,6 @@
 package com.quinn.app.controller;
 
-import com.quinn.app.common.util.RestResult;
+import com.quinn.app.common.util.ResponseUtils;
 import com.quinn.app.model.entity.SysConfig;
 import com.quinn.app.service.SysConfigService;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class SysConfigController {
 
     @RequestMapping("/updateByCode")
     @ResponseBody
-    public RestResult test3(SysConfig sysConfig){
+    public ResponseUtils test3(SysConfig sysConfig){
         return sysConfigService.updateByCode(sysConfig);
     }
 

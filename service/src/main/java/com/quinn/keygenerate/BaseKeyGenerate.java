@@ -1,9 +1,5 @@
 package com.quinn.keygenerate;
 
-import com.quinn.app.common.util.CommonUtil;
-
-import java.util.Calendar;
-
 /**
  * @author Quinn
  * @date 2018/3/2

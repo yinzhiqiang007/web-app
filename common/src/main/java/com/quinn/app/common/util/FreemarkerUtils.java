@@ -11,7 +11,7 @@ import java.io.StringWriter;
 /**
  * Created by yinzhiqiang on 2017/5/25.
  */
-public class FreemarkerUtil {
+public class FreemarkerUtils {
 
     private static Configuration c = new Configuration(Configuration.VERSION_2_3_23);
     private static StringTemplateLoader stringLoader = new StringTemplateLoader();

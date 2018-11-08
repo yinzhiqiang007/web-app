@@ -1,8 +1,7 @@
 package com.quinn.app.service;
 
-import java.util.*;
 import com.quinn.BaseService;
-import com.quinn.app.common.util.RestResult;
+import com.quinn.app.common.util.ResponseUtils;
 import com.quinn.app.model.entity.SysConfig;
 
 /**
@@ -16,6 +15,6 @@ public interface SysConfigService extends BaseService {
      * @param sysConfig
      * @return
      */
-    RestResult updateByCode(SysConfig sysConfig);
+    ResponseUtils updateByCode(SysConfig sysConfig);
 
 }
