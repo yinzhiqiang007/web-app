@@ -19,7 +19,8 @@ public class JacksonConfig {
             public void customize(Jackson2ObjectMapperBuilder jacksonObjectMapperBuilder) {
                 jacksonObjectMapperBuilder.serializationInclusion(JsonInclude.Include.NON_NULL);
                 jacksonObjectMapperBuilder.failOnUnknownProperties(false);
-                jacksonObjectMapperBuilder.propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+                // 属性 驼峰转换成 _ 格式
+//                jacksonObjectMapperBuilder.propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
             }
 
         };
