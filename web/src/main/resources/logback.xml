@@ -53,9 +53,9 @@
         <!-- 添加附加的appender,最多只能添加一个 -->
         <appender-ref ref ="ERROR"/>
     </appender>
-    <logger name="com.quinn" level="DEBUG">
-        <appender-ref ref="STDOUT" />
-    </logger>
+
+    <!-- SQL打印 -->
+    <logger name="com.quinn.app.dao" level="DEBUG"> </logger>
 
     <root level="INFO">
         <appender-ref ref="INFO"/>
