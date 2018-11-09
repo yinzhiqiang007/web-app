@@ -1,4 +1,4 @@
-package com.quinn.app;
+package com.quinn.app.config;
 
 import com.quinn.app.handler.StringToDateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
