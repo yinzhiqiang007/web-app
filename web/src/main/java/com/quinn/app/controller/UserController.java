@@ -1,6 +1,8 @@
 package com.quinn.app.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.quinn.app.common.constans.ResponseEnum;
+import com.quinn.app.common.constans.ResponseUtils;
 import com.quinn.app.common.constans.SystemConstatns;
 import com.quinn.app.config.Test;
 import com.quinn.app.model.entity.User;
@@ -10,7 +12,6 @@ import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
 import com.quinn.payment.service.BankService;
 import com.quinn.redis.IRedisService;
-import com.quinn.redis.RedisConfig;
 import com.quinn.util.ThreadPoolUtil;
 import com.quinn.util.UserCallabe;
 import org.slf4j.Logger;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -83,6 +83,16 @@ public class UserController {
         logger.info("web_app test.....");
         return resultMap;
     }
+
+    @RequestMapping("/save")
+    @ResponseBody
+    public ResponseUtils save(User user){
+        String u = redisKeyGenerate.generateStringKey(KeyGenerateEnum.U);
+        user.setId(u);
+        this.userService.insert(user);
+        return ResponseEnum.code_000000.result();
+    }
+
     @RequestMapping("/test2")
     @ResponseBody
     public Object test2(String id){

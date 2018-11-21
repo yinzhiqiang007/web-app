@@ -2,7 +2,8 @@ package com.quinn.app.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
-import com.quinn.app.common.util.ResponseUtils;
+import com.quinn.app.common.constans.ResponseEnum;
+import com.quinn.app.common.constans.ResponseUtils;
 import com.quinn.app.model.entity.User;
 import com.quinn.app.service.UserService;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao> implements UserSer
 
         PageInfo pageInfo = new PageInfo(list);
 
-        return new ResponseUtils("", "", pageInfo);
+        return ResponseEnum.code_000000.result();
     }
 }

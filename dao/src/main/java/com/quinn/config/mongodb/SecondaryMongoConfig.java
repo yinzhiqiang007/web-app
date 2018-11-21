@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 
-@Configuration
-@ConfigurationProperties(prefix = "spring.data.mongodb.secondary")
+//@Configuration
+//@ConfigurationProperties(prefix = "spring.data.mongodb.secondary")
 public class SecondaryMongoConfig extends AbstractMongoConfig {
 
     @Override

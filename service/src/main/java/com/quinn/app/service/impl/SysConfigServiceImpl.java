@@ -1,7 +1,8 @@
 package com.quinn.app.service.impl;
 
+import com.quinn.app.common.constans.ResponseEnum;
+import com.quinn.app.common.constans.ResponseUtils;
 import com.quinn.app.common.util.CommonUtils;
-import com.quinn.app.common.util.ResponseUtils;
 import com.quinn.app.model.entity.SysConfig;
 import com.quinn.app.service.SysConfigService;
 import com.quinn.redis.IRedisService;
@@ -51,6 +52,6 @@ public class SysConfigServiceImpl extends BaseServiceImpl<SysConfigDao> implemen
                 this.dbCacheRedisService.put(sysConfig.getCode(),sysConfig.getValue(),-1);
             }
         }
-        return new ResponseUtils("100000","ok");
+        return ResponseEnum.code_000000.result();
     }
 }

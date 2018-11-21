@@ -1,6 +1,6 @@
 package com.quinn.app.controller;
 
-import com.quinn.app.common.util.ResponseUtils;
+import com.quinn.app.common.constans.ResponseUtils;
 import com.quinn.app.model.entity.SysConfig;
 import com.quinn.app.service.SysConfigService;
 import org.slf4j.Logger;

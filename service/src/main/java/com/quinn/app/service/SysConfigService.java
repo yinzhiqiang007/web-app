@@ -1,7 +1,7 @@
 package com.quinn.app.service;
 
 import com.quinn.BaseService;
-import com.quinn.app.common.util.ResponseUtils;
+import com.quinn.app.common.constans.ResponseUtils;
 import com.quinn.app.model.entity.SysConfig;
 
 /**

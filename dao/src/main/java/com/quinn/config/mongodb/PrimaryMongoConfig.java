@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 
-@Configuration
-@ConfigurationProperties(prefix = "spring.data.mongodb.primary")
+//@Configuration
+//@ConfigurationProperties(prefix = "spring.data.mongodb.primary")
 public class PrimaryMongoConfig extends AbstractMongoConfig {
 
     @Primary
