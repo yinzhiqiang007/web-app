@@ -54,7 +54,7 @@ public class Scheduler implements Callable {
         } else {
             chainIndex++;
             if (chainIndex < beanChain.length) {
-                ThreadPoolUtil.threadPool.submit(new Scheduler(count, map, chainIndex, beanChain));
+                ThreadPoolUtil.threadPool.submit(new Scheduler(AbstractExecutor.first_invoke, map, chainIndex, beanChain));
             }else{
                 AbstractExecutor.concurrentHashMap.remove(map.get("chainId").toString());
                 LogUtils.info(ResponseEnum.code_000000.name(), "执行器执行完毕，bean:" + beanName + "param:" + JSON.toJSONString(map));
