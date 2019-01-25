@@ -5,14 +5,15 @@ import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import redis.clients.jedis.JedisCommands;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -112,13 +113,13 @@ public abstract class IRedisService<T> {
      * @return
      */
     public boolean setNX(final String key, long expire) {
-        RedisCallback<String> callback = (connection) -> {
-            JedisCommands commands = (JedisCommands) connection.getNativeConnection();
-            String uuid = UUID.randomUUID().toString();
-            return commands.set(key, uuid, "NX", "PX", expire);
-        };
-        String result = redisTemplate.execute(callback);
-        return CommonUtils.isNotBlank(result);
+//        RedisCallback<String> callback = (connection) -> {
+//            JedisCommands commands = (JedisCommands) connection.getNativeConnection();
+//            String uuid = UUID.randomUUID().toString();
+//            return commands.set(key, uuid, "NX", "PX", expire);
+//        };
+//        String result = redisTemplate.execute(callback);
+        return CommonUtils.isNotBlank("");
 
     }
 

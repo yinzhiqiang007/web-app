@@ -1,83 +1,58 @@
 package com.quinn.redis;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.*;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
-import redis.clients.jedis.JedisShardInfo;
-import redis.clients.util.Sharded;
+
+
 
 /**
- * @author Quinn
- * @date 2018/2/6
- * @package com.quinn.common
+ * 缓存配置-使用Lettuce客户端，自动注入配置的方式
  */
 @Configuration
 @Component
+
+@AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
 
-    @Value("${redis.host}")
-    private String host;
 
-    @Value("${redis.port}")
-    private int port;
-
-    @Value("${redis.timeout}")
-    private int timeout;
-
-    @Value("${redis.password}")
-    private String password;
-
-    @Value("${redis.database}")
-    private int database;
-
-    @Value("${redis.pool.max-idle}")
-    private int maxIdle;
-
-    @Value("${redis.pool.min-idle}")
-    private int minIdle;
-
-
-
-    @Bean(name = "redisConnectionFactory")
-    public RedisConnectionFactory getRedisConnectionFactory(){
-        JedisShardInfo JedisShardInfo  = new JedisShardInfo(host,port,timeout,timeout, Sharded.DEFAULT_WEIGHT);
-        JedisShardInfo.setPassword(password);
-        RedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory(JedisShardInfo);
-        return redisConnectionFactory;
-    }
 
     /**
-     * 实例化 RedisTemplate 对象
-     *
+     * 配置自定义redisTemplate
      * @return
      */
     @Bean
-    public RedisTemplate<String, Object> functionDomainRedisTemplate(@Qualifier("redisConnectionFactory") RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate();
-        initDomainRedisTemplate(redisTemplate, redisConnectionFactory);
-        return redisTemplate;
+    RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+
+        //使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值
+        Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        serializer.setObjectMapper(mapper);
+
+        template.setValueSerializer(serializer);
+        //使用StringRedisSerializer来序列化和反序列化redis的key值
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(serializer);
+        template.afterPropertiesSet();
+        return template;
     }
 
-    /**
-     * 设置数据存入 redis 的序列化方式
-     *
-     * @param redisTemplate
-     * @param factory
-     */
-    private void initDomainRedisTemplate(RedisTemplate<String, Object> redisTemplate, RedisConnectionFactory factory) {
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new JdkSerializationRedisSerializer());
-        redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
-        redisTemplate.setConnectionFactory(factory);
-    }
 
     /**
      * 实例化 HashOperations 对象,可以使用 Hash 类型操作
