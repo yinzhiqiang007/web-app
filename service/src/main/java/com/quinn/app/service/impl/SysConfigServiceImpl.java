@@ -30,7 +30,7 @@ public class SysConfigServiceImpl extends BaseServiceImpl<SysConfigDao> implemen
 
     @PostConstruct
     public void init(){
-        boolean b = this.dbCacheRedisService.lock("sys_config",20000);
+        boolean b = this.dbCacheRedisService.lock("tb_sys_config",20000);
         if(b){
             List<SysConfig> list = this.sysConfigDao.listByEntity(null);
             for(SysConfig sysConfig : list){
