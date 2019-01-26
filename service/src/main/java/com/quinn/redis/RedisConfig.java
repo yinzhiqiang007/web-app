@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
  */
 @Configuration
 @Component
-
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
 

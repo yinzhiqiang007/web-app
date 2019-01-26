@@ -12,6 +12,7 @@ import com.quinn.keygenerate.KeyGenerate;
 import com.quinn.keygenerate.KeyGenerateEnum;
 import com.quinn.payment.service.BankService;
 import com.quinn.redis.IRedisService;
+import com.quinn.redis.RedisLock;
 import com.quinn.util.ThreadPoolUtil;
 import com.quinn.util.UserCallabe;
 import org.slf4j.Logger;
@@ -68,12 +69,12 @@ public class UserController {
     @RequestMapping("/test")
     @ResponseBody
     public Map<String,Object> test(String id){
-        System.out.println("1111");
-        System.out.println("2222");
-        System.out.println("3333");
-        System.out.println("4444");
-        systemConfigRedisService.setNX("dddd",20000);
+
+        boolean b = systemConfigRedisService.lock("dddd",20000);
+        System.out.println("===="+b);
+//        systemConfigRedisService.unlock("dddd");
         systemConfigRedisService.put("hehehehe","ttttt",200);
+//        lock.unlock();
         Map<String,Object> resultMap = new HashMap();
         System.out.println(this.test.getSs());
         User user = userService.getById("123");
