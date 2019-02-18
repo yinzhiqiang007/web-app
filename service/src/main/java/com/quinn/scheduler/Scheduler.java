@@ -36,9 +36,9 @@ public class Scheduler implements Callable {
     @Override
     public Object call() throws Exception {
         String beanName = beanChain[chainIndex];
-        if (count == AbstractExecutor.first_invoke) {
-            map.put("chainId", CommonUtils.getUUIDString());
-        }
+//        if (chainIndex+1 == AbstractExecutor.first_invoke) {
+//            map.put("chainId", CommonUtils.getUUIDString());
+//        }
         Executor handler = (Executor) SpringUtil.getBean(beanName);
         boolean b = handler.invoke(map);
         if (!b) {
@@ -48,7 +48,7 @@ public class Scheduler implements Callable {
             if (c != null) {
                 ThreadPoolUtil.scheduledThreadPool.schedule(new Scheduler(count, map, chainIndex, beanChain), c, TimeUnit.SECONDS);
             } else {
-                AbstractExecutor.concurrentHashMap.remove(map.get("chainId").toString());
+//                AbstractExecutor.concurrentHashMap.remove(map.get("chainId").toString());
                 LogUtils.error(ResponseEnum.code_999999.name(), "执行器执行返回异常，超出最大执行次数count:" + count + "bean:" + beanName + "param:" + JSON.toJSONString(map));
             }
         } else {
@@ -56,7 +56,7 @@ public class Scheduler implements Callable {
             if (chainIndex < beanChain.length) {
                 ThreadPoolUtil.threadPool.submit(new Scheduler(AbstractExecutor.first_invoke, map, chainIndex, beanChain));
             }else{
-                AbstractExecutor.concurrentHashMap.remove(map.get("chainId").toString());
+//                AbstractExecutor.concurrentHashMap.remove(map.get("chainId").toString());
                 LogUtils.info(ResponseEnum.code_000000.name(), "执行器执行完毕，bean:" + beanName + "param:" + JSON.toJSONString(map));
             }
         }

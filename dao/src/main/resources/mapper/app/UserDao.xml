@@ -10,14 +10,15 @@
         <result column="idcard" property="idcard" jdbcType="VARCHAR" />
         <result column="gender" property="gender" jdbcType="INTEGER" />
         <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-    id,name,mobile,idcard,gender,address
+    id,name,mobile,idcard,gender,address,create_time
     </sql>
 
 
-    <select id="getById" resultType="com.quinn.app.model.entity.User">
+    <select id="getById"  resultMap="BaseResultMap">
         select * from tb_user where id=#{id}
     </select>
 

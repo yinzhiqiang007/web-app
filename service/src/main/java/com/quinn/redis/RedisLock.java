@@ -150,12 +150,6 @@ public class RedisLock {
         return obj != null ? (String) obj : null;
     }
 
-    public synchronized boolean lock()  {
-        long expires = System.currentTimeMillis() + expireMsecs + 1;
-        String expiresStr = String.valueOf(expires); // 锁到期时间
-        return this.setNX(lockKey, expiresStr);
-    }
-
     /**
      * 获得 lock. 实现思路: 主要是使用了redis 的setnx命令,缓存了锁. reids缓存的key是锁的key,所有的共享,
      * value是锁的到期时间(注意:这里把过期时间放在value了,没有时间上设置其超时时间) 执行过程:
@@ -166,7 +160,17 @@ public class RedisLock {
      * @throws InterruptedException
      *             in case of thread interruption
      */
-    public synchronized boolean lockSuper()  {
+    public synchronized boolean lock()  {
+        long expires = System.currentTimeMillis() + expireMsecs + 1;
+        String expiresStr = String.valueOf(expires); // 锁到期时间
+        return this.setNX(lockKey, expiresStr);
+    }
+
+    /**
+     * 自旋timeoutMsecs毫秒
+     * @return
+     */
+    public synchronized boolean spinLock()  {
         long timeout = timeoutMsecs;
         while (timeout >= 0) {
             long expires = System.currentTimeMillis() + expireMsecs + 1;

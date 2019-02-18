@@ -3,6 +3,8 @@ package com.quinn.app.model.entity;
 
 import com.quinn.Base;
 
+import java.util.Date;
+
 /**
  * @author Quinn
  * @date 2018/1/15
@@ -16,6 +18,7 @@ public class User extends Base{
         private String idcard;
         private Integer gender;
         private String address;
+        private Date createTime;
 
         public String getId() {
             return id;
@@ -54,8 +57,15 @@ public class User extends Base{
             this.address = address;
         }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-        @Override
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Override
         public String toString() {
             return "{" +
             "\"id\":" + "\"" + id + "\"" + "," +

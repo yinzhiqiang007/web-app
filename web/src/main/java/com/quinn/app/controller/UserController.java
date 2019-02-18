@@ -77,7 +77,7 @@ public class UserController {
 //        lock.unlock();
         Map<String,Object> resultMap = new HashMap();
         System.out.println(this.test.getSs());
-        User user = userService.getById("123");
+        User user = userService.getById("U2018112315131200001");
         this.userService.updateTest(user);
         resultMap.put("user",user);
         resultMap.put("bank",bankService.getById(id));
