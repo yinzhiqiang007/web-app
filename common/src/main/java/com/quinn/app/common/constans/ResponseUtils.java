@@ -4,7 +4,7 @@ package com.quinn.app.common.constans;
 import lombok.Data;
 
 @Data
-public class ResponseUtils {
+public class ResponseUtils<T> {
 
 
 
@@ -19,7 +19,7 @@ public class ResponseUtils {
     /**
      * 返回数据
      */
-    private Object data;
+    private T data;
 
     public ResponseUtils() {
 

@@ -38,12 +38,21 @@ public enum ResponseEnum {
         return result(null);
     }
 
-    public ResponseUtils result(Object data) {
-        ResponseUtils restResult = new ResponseUtils();
+//    public ResponseUtils result(Object data) {
+//        ResponseUtils restResult = new ResponseUtils();
+//        restResult.setCode(this.name().replace("code_", ""));
+//        restResult.setMessage(this.message);
+//        restResult.setData(data);
+//        return restResult;
+//    }
+
+    public <T> ResponseUtils result(T data) {
+        ResponseUtils<T> restResult = new ResponseUtils<>();
         restResult.setCode(this.name().replace("code_", ""));
         restResult.setMessage(this.message);
         restResult.setData(data);
         return restResult;
+
     }
 
 
