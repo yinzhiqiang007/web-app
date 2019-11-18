@@ -48,7 +48,7 @@ public enum ResponseEnum {
 
     public <T> ResponseUtils result(T data) {
         ResponseUtils<T> restResult = new ResponseUtils<>();
-        restResult.setCode(this.name().replace("code_", ""));
+        restResult.setCode(this.name().substring(5));
         restResult.setMessage(this.message);
         restResult.setData(data);
         return restResult;
