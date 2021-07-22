@@ -134,8 +134,8 @@ public class UserController {
     @RequestMapping("/face")
     @ResponseBody
     public Object face(@RequestParam("file") MultipartFile file) throws IOException {
-        String s = FaceTest.getFace(file.getInputStream());
-        return s;
+//        String s = FaceTest.getFace(file.getInputStream());
+        return "OK";
     }
 
     public static void main(String[] args) throws InterruptedException {
